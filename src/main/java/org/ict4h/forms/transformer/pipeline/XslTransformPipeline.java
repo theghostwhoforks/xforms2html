@@ -4,6 +4,6 @@ import java.io.File;
 import java.util.Stack;
 
 public interface XslTransformPipeline {
-    XslTransformPipeline push(File transformFile);
+    XslTransformPipeline push(File transformation);
     Stack<File> get();
 }
