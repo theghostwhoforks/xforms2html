@@ -24,15 +24,7 @@ public class EnketoResult {
         return document.getRootElement().element("model").asXML();
     }
 
-    public String getResult() throws DocumentException {
-        return transform;
-    }
-
-    public boolean hasResult() {
+    private boolean hasResult() {
         return transform != null && !transform.isEmpty();
-    }
-
-    public String getModelAsJson() throws DocumentException {
-        return getModel();
     }
 }
