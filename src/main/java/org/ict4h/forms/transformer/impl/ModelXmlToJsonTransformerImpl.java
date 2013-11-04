@@ -1,5 +1,7 @@
 package org.ict4h.forms.transformer.impl;
 
+import org.dom4j.DocumentException;
+import org.ict4h.forms.data.CompositeEnketoResult;
 import org.ict4h.forms.data.EnketoResult;
 import org.ict4h.forms.transformer.XmlToHtml5Transformer;
 import org.ict4h.forms.transformer.pipeline.XslTransformPipeline;
@@ -17,19 +19,19 @@ import java.util.Stack;
 
 import static org.ict4h.forms.util.FileUtils.createTempFile;
 
-public class XmlToHtml5TransformerImpl implements XmlToHtml5Transformer{
-    private final XslTransformPipeline xslTransformPipeline;
-    private SAXTransformerFactory transformerFactory;
+public class ModelXmlToJsonTransformerImpl implements XmlToHtml5Transformer {
 
-    public XmlToHtml5TransformerImpl(XslTransformPipeline xslTransformPipeline, TransformerFactory transformerFactory) {
-        this.xslTransformPipeline = xslTransformPipeline;
+    private final XslTransformPipeline pipeline;
+    private final SAXTransformerFactory transformerFactory;
+
+    public ModelXmlToJsonTransformerImpl(XslTransformPipeline pipeline, TransformerFactory transformerFactory) {
+        this.pipeline = pipeline;
         this.transformerFactory = (SAXTransformerFactory) transformerFactory;
-        transformerFactory.setAttribute("http://saxon.sf.net/feature/version-warning", Boolean.FALSE);
     }
 
     @Override
-    public EnketoResult transform(String xFormXml) throws TransformerException, IOException {
-        final Stack<File> transformations = xslTransformPipeline.get();
+    public EnketoResult transform(String xFormXml) throws TransformerException, IOException, DocumentException {
+        final Stack<File> transformations = pipeline.get();
         if(transformations.empty()){
             return new EnketoResult("");
         }
@@ -49,10 +51,8 @@ public class XmlToHtml5TransformerImpl implements XmlToHtml5Transformer{
         try {
             transformer.transform(new StreamSource(inputFile), intermediateResult);
         } finally {
-            if(inputFile != null){
-                inputFile.deleteOnExit();
-            }
+            inputFile.delete();
         }
-        return new EnketoResult(writer.getBuffer().toString());
+        return new CompositeEnketoResult(xFormXml, writer.getBuffer().toString());
     }
 }

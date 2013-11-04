@@ -13,17 +13,24 @@ public class XslTransformPipelineFactory {
 
     private XslTransformPipelineFactory(){}
 
+    public static XslTransformPipeline pipelineForOpenRosaToHtml5(){
+        return new XslTransformPipelineFactory().getOpenRosaToHtml5();
+    }
+
     public static XslTransformPipeline pipelineForXFormToHtml5(){
         return new XslTransformPipelineFactory().getXFormToHtml5Pipeline();
     }
 
-    public static XslTransformPipeline pipelineForModelXMLToJson(){
-        return new XslTransformPipelineFactory().getModelToJsonPipeline();
+    public static XslTransformPipeline pipelineForXFormToModelXml(){
+        return new XslTransformPipelineFactory().getXFormToModelXmlPipeline();
     }
 
-    private XslTransformPipeline getModelToJsonPipeline() {
-        return new XslTransformPipelineImpl().push(getFile(ENKETO_RESULT_TO_MODEL_XSL))
-                                             .push(getFile(MODEL_TO_JSON_XSL));
+    private XslTransformPipeline getOpenRosaToHtml5() {
+        return new XslTransformPipelineImpl().push(getFile(OPEN_ROSA_TO_HTML5_FORM_XSL));
+    }
+
+    private XslTransformPipeline getXFormToModelXmlPipeline() {
+        return new XslTransformPipelineImpl().push(getFile(OPEN_ROSA_TO_MODEL_XSL));
     }
 
     private XslTransformPipeline getXFormToHtml5Pipeline(){

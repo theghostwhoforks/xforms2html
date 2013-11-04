@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>woman_reg_17Oct</h:title>
+    <model>
+      <instance>
+        <woman_reg_17Oct id="woman_reg_17Oct">
+          <formhub>
+            <uuid/>
+          </formhub>
+          <start/>
+          <end/>
+          <today/>
+          <basic_info>
+            <reg_date/>
+            <woman_name/>
+            <dob/>
+            <woman_age/>
+            <address/>
+          </basic_info>
+          <meta>
+            <instanceID/>
+          </meta>
+        </woman_reg_17Oct>
+      </instance>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/woman_reg_17Oct/start" type="dateTime"/>
+      <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/woman_reg_17Oct/end" type="dateTime"/>
+      <bind jr:preload="date" jr:preloadParams="today" nodeset="/woman_reg_17Oct/today" type="date"/>
+      <bind nodeset="/woman_reg_17Oct/basic_info/reg_date" type="date"/>
+      <bind nodeset="/woman_reg_17Oct/basic_info/woman_name" required="true()" type="string"/>
+      <bind nodeset="/woman_reg_17Oct/basic_info/dob" type="date"/>
+      <bind constraint=" /woman_reg_17Oct/basic_info/woman_age &gt;15 and  /woman_reg_17Oct/basic_info/woman_age &lt;60" jr:constraintMsg="This is not a valid age!" nodeset="/woman_reg_17Oct/basic_info/woman_age" relevant=" /woman_reg_17Oct/basic_info/dob =''" type="int"/>
+      <bind nodeset="/woman_reg_17Oct/basic_info/address" type="string"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/woman_reg_17Oct/meta/instanceID" readonly="true()" type="string"/>
+      <bind calculate="'49240dcf331447af9eb82186d11c889d'" nodeset="/woman_reg_17Oct/formhub/uuid" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <group ref="/woman_reg_17Oct/basic_info">
+      <label>Basic Information</label>
+      <input ref="/woman_reg_17Oct/basic_info/reg_date">
+        <label>Date of registration</label>
+      </input>
+      <input ref="/woman_reg_17Oct/basic_info/woman_name">
+        <label>Name of woman</label>
+      </input>
+      <input ref="/woman_reg_17Oct/basic_info/dob">
+        <label><output value=" /woman_reg_17Oct/basic_info/woman_name "/>'s date of birth</label></input>
+      <input ref="/woman_reg_17Oct/basic_info/woman_age">
+        <label><output value=" /woman_reg_17Oct/basic_info/woman_name "/>'s age</label></input>
+      <input ref="/woman_reg_17Oct/basic_info/address">
+        <label><output value=" /woman_reg_17Oct/basic_info/woman_name "/>'s address</label></input>
+    </group>
+  </h:body>
+</h:html>

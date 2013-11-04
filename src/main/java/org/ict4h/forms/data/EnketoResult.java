@@ -1,5 +1,6 @@
 package org.ict4h.forms.data;
 
+import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
 
@@ -20,11 +21,12 @@ public class EnketoResult {
 
     public String getModel() throws DocumentException {
         if (!hasResult()) return "";
-        org.dom4j.Document document = new SAXReader().read(new StringReader(transform));
-        return document.getRootElement().element("model").asXML();
+        final Document document =  new SAXReader().read(new StringReader(transform));
+        return document.getRootElement().element("head").element("model").asXML();
     }
 
     private boolean hasResult() {
         return transform != null && !transform.isEmpty();
     }
+
 }
