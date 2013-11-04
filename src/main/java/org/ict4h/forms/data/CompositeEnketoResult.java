@@ -11,5 +11,4 @@ public class CompositeEnketoResult extends EnketoResult {
     public String getModelJson(){
         return this.modelJson;
     }
-
 }

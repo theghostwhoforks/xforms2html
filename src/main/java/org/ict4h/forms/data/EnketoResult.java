@@ -25,6 +25,10 @@ public class EnketoResult {
         return document.getRootElement().element("model").asXML();
     }
 
+    public String getResult(){
+        return transform;
+    }
+
     private boolean hasResult() {
         return transform != null && !transform.isEmpty();
     }
