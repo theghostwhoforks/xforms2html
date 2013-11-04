@@ -17,11 +17,11 @@ import java.util.Stack;
 
 import static org.ict4h.forms.util.FileUtils.createTempFile;
 
-public class XmlTransformerImpl implements XmlTransformer {
+public class OpenRosaToHtmlFormTransformer implements XmlTransformer {
     private final XslTransformPipeline xslTransformPipeline;
     private SAXTransformerFactory transformerFactory;
 
-    public XmlTransformerImpl(XslTransformPipeline xslTransformPipeline, TransformerFactory transformerFactory) {
+    public OpenRosaToHtmlFormTransformer(XslTransformPipeline xslTransformPipeline, TransformerFactory transformerFactory) {
         this.xslTransformPipeline = xslTransformPipeline;
         this.transformerFactory = (SAXTransformerFactory) transformerFactory;
         transformerFactory.setAttribute("http://saxon.sf.net/feature/version-warning", Boolean.FALSE);

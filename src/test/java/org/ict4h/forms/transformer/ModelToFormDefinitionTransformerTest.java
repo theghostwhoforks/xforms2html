@@ -4,7 +4,7 @@ import net.sf.saxon.TransformerFactoryImpl;
 import org.apache.commons.io.IOUtils;
 import org.dom4j.DocumentException;
 import org.ict4h.forms.data.CompositeEnketoResult;
-import org.ict4h.forms.transformer.impl.ModelXmlToJsonTransformerImpl;
+import org.ict4h.forms.transformer.impl.ModelToFormDefinitionTransformer;
 import org.ict4h.forms.transformer.pipeline.XslTransformPipeline;
 import org.ict4h.forms.transformer.pipeline.factory.XslTransformPipelineFactory;
 import org.junit.Test;
@@ -14,12 +14,12 @@ import java.io.IOException;
 
 import static org.junit.Assert.assertNotNull;
 
-public class ModelXmlToJsonTransformerTest {
+public class ModelToFormDefinitionTransformerTest {
 
     @Test
     public void shouldTransformXmlToHtml5() throws TransformerException, IOException, DocumentException {
         XslTransformPipeline pipeline = XslTransformPipelineFactory.pipelineForOpenRosaToFormDefinitionJson();
-        final ModelXmlToJsonTransformerImpl transformer = new ModelXmlToJsonTransformerImpl(pipeline, new TransformerFactoryImpl());
+        final XmlTransformer transformer = new ModelToFormDefinitionTransformer(pipeline, new TransformerFactoryImpl());
         final CompositeEnketoResult result = (CompositeEnketoResult) transformer.transform(getXForm());
         assertNotNull(result.getModelJson());
     }

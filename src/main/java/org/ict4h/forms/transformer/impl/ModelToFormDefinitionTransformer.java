@@ -19,12 +19,12 @@ import java.util.Stack;
 
 import static org.ict4h.forms.util.FileUtils.createTempFile;
 
-public class ModelXmlToJsonTransformerImpl implements XmlTransformer {
+public class ModelToFormDefinitionTransformer implements XmlTransformer {
 
     private final XslTransformPipeline pipeline;
     private final SAXTransformerFactory transformerFactory;
 
-    public ModelXmlToJsonTransformerImpl(XslTransformPipeline pipeline, TransformerFactory transformerFactory) {
+    public ModelToFormDefinitionTransformer(XslTransformPipeline pipeline, TransformerFactory transformerFactory) {
         this.pipeline = pipeline;
         this.transformerFactory = (SAXTransformerFactory) transformerFactory;
     }

@@ -4,7 +4,7 @@ import net.sf.saxon.TransformerFactoryImpl;
 import org.apache.commons.io.IOUtils;
 import org.dom4j.DocumentException;
 import org.ict4h.forms.data.EnketoResult;
-import org.ict4h.forms.transformer.impl.XmlTransformerImpl;
+import org.ict4h.forms.transformer.impl.OpenRosaToHtmlFormTransformer;
 import org.ict4h.forms.transformer.pipeline.XslTransformPipeline;
 import org.ict4h.forms.transformer.pipeline.factory.XslTransformPipelineFactory;
 import org.junit.Test;
@@ -14,12 +14,12 @@ import java.io.IOException;
 
 import static junit.framework.Assert.assertNotNull;
 
-public class XmlTransformerTest {
+public class OpenRosaToHtmlFormTransformerTest {
 
     @Test
     public void shouldTransformXmlToHtml5() throws TransformerException, IOException, DocumentException {
         final XslTransformPipeline pipeline = XslTransformPipelineFactory.pipelineForOpenRosaToHtml5();
-        final XmlTransformerImpl transformer = new XmlTransformerImpl(pipeline, new TransformerFactoryImpl());
+        final XmlTransformer transformer = new OpenRosaToHtmlFormTransformer(pipeline, new TransformerFactoryImpl());
         final String xForm = getXForm();
         final EnketoResult enketoResult = transformer.transform(xForm);
         assertNotNull(enketoResult.getForm());
@@ -28,7 +28,7 @@ public class XmlTransformerTest {
     @Test
     public void shouldTransformXmlFormToModelXml() throws DocumentException, TransformerException, IOException {
         final XslTransformPipeline pipeline = XslTransformPipelineFactory.pipelineForOpenRosaToModelXml();
-        final XmlTransformer transformer = new XmlTransformerImpl(pipeline, new TransformerFactoryImpl());
+        final XmlTransformer transformer = new OpenRosaToHtmlFormTransformer(pipeline, new TransformerFactoryImpl());
         final String xForm = getXForm();
         final EnketoResult enketoResult = transformer.transform(xForm);
         assertNotNull(enketoResult.getModel());
