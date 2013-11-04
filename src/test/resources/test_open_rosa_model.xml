@@ -1,0 +1,28 @@
+<root xmlns:xf="http://www.w3.org/2002/xforms"
+      xmlns:h="http://www.w3.org/1999/xhtml"
+      xmlns:ev="http://www.w3.org/2001/xml-events"
+      xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+      xmlns:jr="http://openrosa.org/javarosa">
+    <model>
+        <instance xmlns="http://www.w3.org/2002/xforms" xmlns:orx="http://openrosa.org/xforms/">
+            <woman_reg_17Oct id="woman_reg_17Oct">
+                <formhub>
+                    <uuid/>
+                </formhub>
+                <start/>
+                <end/>
+                <today/>
+                <basic_info>
+                    <reg_date/>
+                    <woman_name/>
+                    <dob/>
+                    <woman_age/>
+                    <address/>
+                </basic_info>
+                <meta>
+                    <instanceID/>
+                </meta>
+            </woman_reg_17Oct>
+        </instance>
+    </model>
+</root>

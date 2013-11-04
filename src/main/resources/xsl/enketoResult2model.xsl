@@ -3,7 +3,7 @@
         xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
         version="2.0"
         xmlns:json="http://json.org/"
-        xmlns="http://www.w3.org/2002/xforms"
+        xmlns:forms="http://www.w3.org/2002/xforms"
         >
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes" version="1.0" encoding="UTF-8"/>
     <xsl:template match="/">
@@ -17,7 +17,7 @@
     <!--<xsl:template match="/root/*[local-name() != 'model']"/>-->
     <!--<xsl:template match="/root/model/instance/*[local-name() = 'root']"/>-->
 
-    <xsl:template match="/model/instance/node()/node()">
+    <xsl:template match="/model/*:instance/node()/node()">
         <xsl:call-template name="copy-model">
             <xsl:with-param name="model" select="current()"/>
         </xsl:call-template>

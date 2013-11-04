@@ -46,7 +46,7 @@ public class ModelXmlToJsonTransformerImpl implements XmlToHtml5Transformer {
             intermediateResult = new SAXResult(transformerHandler);
         }
 
-        File inputFile = createTempFile(xFormXml);
+        File inputFile = createTempFile(new EnketoResult(xFormXml).getModel());
         Transformer transformer = transformerFactory.newTransformer();
         try {
             transformer.transform(new StreamSource(inputFile), intermediateResult);

@@ -29,10 +29,10 @@ public class XmlToHtml5TransformerTest {
 
     @Test
     public void shouldTransformXmlFormToModelXml() throws DocumentException, TransformerException, IOException {
-        final XslTransformPipeline pipeline = XslTransformPipelineFactory.pipelineForXFormToModelXml();
-        final XmlToHtml5Transformer transformer = new ModelXmlToJsonTransformerImpl(pipeline, new TransformerFactoryImpl());
+        final XslTransformPipeline pipeline = XslTransformPipelineFactory.pipelineForOpenRosaToModelXml();
+        final XmlToHtml5Transformer transformer = new XmlToHtml5TransformerImpl(pipeline, new TransformerFactoryImpl());
         final String xForm = getXForm();
-        final CompositeEnketoResult enketoResult = (CompositeEnketoResult) transformer.transform(xForm);
+        final EnketoResult enketoResult = transformer.transform(xForm);
         assertNotNull(enketoResult.getModel());
     }
 

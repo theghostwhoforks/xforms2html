@@ -22,7 +22,7 @@ public class EnketoResult {
     public String getModel() throws DocumentException {
         if (!hasResult()) return "";
         final Document document =  new SAXReader().read(new StringReader(transform));
-        return document.getRootElement().element("head").element("model").asXML();
+        return document.getRootElement().element("model").asXML();
     }
 
     private boolean hasResult() {

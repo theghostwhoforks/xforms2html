@@ -21,7 +21,7 @@ public class XslTransformPipelineTest {
 
     @Test
     public void shouldEnsureThatEnketoResultToModelXMLIsTheFirstElementInThePipelineStack(){
-        final Stack<File> stack = XslTransformPipelineFactory.pipelineForXFormToModelXml().get();
+        final Stack<File> stack = XslTransformPipelineFactory.pipelineForOpenRosaToModelXml().get();
         assertEquals(1, stack.size());
         assertEquals(Constants.OPEN_ROSA_TO_MODEL_XSL,stack.pop().getName());
     }
