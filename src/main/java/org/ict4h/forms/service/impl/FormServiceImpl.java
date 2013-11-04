@@ -1,8 +1,9 @@
 package org.ict4h.forms.service.impl;
 
 import org.dom4j.DocumentException;
-import org.ict4h.forms.data.CompositeEnketoResult;
+import org.ict4h.forms.data.FormDefinitionEnketoResult;
 import org.ict4h.forms.data.EnketoResult;
+import org.ict4h.forms.domain.Form;
 import org.ict4h.forms.service.FormService;
 import org.ict4h.forms.transformer.XmlTransformer;
 
@@ -22,13 +23,11 @@ public class FormServiceImpl implements FormService {
     }
 
     @Override
-    public CompositeEnketoResult create(String xml) throws TransformerException, IOException, DocumentException {
-        final EnketoResult htmlForm = openRosaToHtmlFormTransformer.transform(xml);
-        final String form = htmlForm.getForm();
+    public Form create(String xml) throws TransformerException, IOException, DocumentException {
+        final String formXml = openRosaToHtmlFormTransformer.transform(xml).getForm();
         final EnketoResult modelResult = openRosaToModelXmlTransformer.transform(xml);
         final String modelXml = modelResult.getModel();
-        final CompositeEnketoResult formDefinition = (CompositeEnketoResult) modelToJsonTransformer.transform(modelResult.getResult());
-
-        return new CompositeEnketoResult(String.format("<root>%s%s</root>",form,modelXml),formDefinition.getModelJson());
+        final FormDefinitionEnketoResult formDefinition = (FormDefinitionEnketoResult) modelToJsonTransformer.transform(modelResult.getResult());
+        return new Form(formXml, modelXml, formDefinition.getModelJson());
     }
 }

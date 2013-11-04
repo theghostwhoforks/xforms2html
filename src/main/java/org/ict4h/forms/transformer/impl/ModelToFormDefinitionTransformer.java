@@ -1,7 +1,7 @@
 package org.ict4h.forms.transformer.impl;
 
 import org.dom4j.DocumentException;
-import org.ict4h.forms.data.CompositeEnketoResult;
+import org.ict4h.forms.data.FormDefinitionEnketoResult;
 import org.ict4h.forms.data.EnketoResult;
 import org.ict4h.forms.transformer.XmlTransformer;
 import org.ict4h.forms.transformer.pipeline.XslTransformPipeline;
@@ -53,6 +53,6 @@ public class ModelToFormDefinitionTransformer implements XmlTransformer {
         } finally {
             inputFile.delete();
         }
-        return new CompositeEnketoResult(xFormXml, writer.getBuffer().toString());
+        return new FormDefinitionEnketoResult(xFormXml, writer.getBuffer().toString());
     }
 }

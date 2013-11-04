@@ -3,7 +3,7 @@ package org.ict4h.forms.transformer;
 import net.sf.saxon.TransformerFactoryImpl;
 import org.apache.commons.io.IOUtils;
 import org.dom4j.DocumentException;
-import org.ict4h.forms.data.CompositeEnketoResult;
+import org.ict4h.forms.data.FormDefinitionEnketoResult;
 import org.ict4h.forms.transformer.impl.ModelToFormDefinitionTransformer;
 import org.ict4h.forms.transformer.pipeline.XslTransformPipeline;
 import org.ict4h.forms.transformer.pipeline.factory.XslTransformPipelineFactory;
@@ -20,7 +20,7 @@ public class ModelToFormDefinitionTransformerTest {
     public void shouldTransformXmlToHtml5() throws TransformerException, IOException, DocumentException {
         XslTransformPipeline pipeline = XslTransformPipelineFactory.pipelineForOpenRosaToFormDefinitionJson();
         final XmlTransformer transformer = new ModelToFormDefinitionTransformer(pipeline, new TransformerFactoryImpl());
-        final CompositeEnketoResult result = (CompositeEnketoResult) transformer.transform(getXForm());
+        final FormDefinitionEnketoResult result = (FormDefinitionEnketoResult) transformer.transform(getXForm());
         assertNotNull(result.getModelJson());
     }
 

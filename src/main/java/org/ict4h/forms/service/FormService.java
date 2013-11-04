@@ -1,11 +1,12 @@
 package org.ict4h.forms.service;
 
 import org.dom4j.DocumentException;
-import org.ict4h.forms.data.CompositeEnketoResult;
+import org.ict4h.forms.data.FormDefinitionEnketoResult;
+import org.ict4h.forms.domain.Form;
 
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
 
 public interface FormService {
-    CompositeEnketoResult create(String xml) throws TransformerException, IOException, DocumentException;
+    Form create(String xml) throws TransformerException, IOException, DocumentException;
 }
