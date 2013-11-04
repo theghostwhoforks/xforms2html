@@ -6,6 +6,6 @@ import org.ict4h.forms.data.EnketoResult;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
 
-public interface XmlToHtml5Transformer {
+public interface XmlTransformer {
     EnketoResult transform(String xFormXml) throws TransformerException, IOException, DocumentException;
 }

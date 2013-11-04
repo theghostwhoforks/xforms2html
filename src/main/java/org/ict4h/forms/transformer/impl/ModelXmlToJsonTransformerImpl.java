@@ -3,7 +3,7 @@ package org.ict4h.forms.transformer.impl;
 import org.dom4j.DocumentException;
 import org.ict4h.forms.data.CompositeEnketoResult;
 import org.ict4h.forms.data.EnketoResult;
-import org.ict4h.forms.transformer.XmlToHtml5Transformer;
+import org.ict4h.forms.transformer.XmlTransformer;
 import org.ict4h.forms.transformer.pipeline.XslTransformPipeline;
 
 import javax.xml.transform.*;
@@ -19,7 +19,7 @@ import java.util.Stack;
 
 import static org.ict4h.forms.util.FileUtils.createTempFile;
 
-public class ModelXmlToJsonTransformerImpl implements XmlToHtml5Transformer {
+public class ModelXmlToJsonTransformerImpl implements XmlTransformer {
 
     private final XslTransformPipeline pipeline;
     private final SAXTransformerFactory transformerFactory;

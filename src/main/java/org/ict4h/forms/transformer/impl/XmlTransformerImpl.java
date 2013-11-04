@@ -1,7 +1,7 @@
 package org.ict4h.forms.transformer.impl;
 
 import org.ict4h.forms.data.EnketoResult;
-import org.ict4h.forms.transformer.XmlToHtml5Transformer;
+import org.ict4h.forms.transformer.XmlTransformer;
 import org.ict4h.forms.transformer.pipeline.XslTransformPipeline;
 
 import javax.xml.transform.*;
@@ -17,11 +17,11 @@ import java.util.Stack;
 
 import static org.ict4h.forms.util.FileUtils.createTempFile;
 
-public class XmlToHtml5TransformerImpl implements XmlToHtml5Transformer{
+public class XmlTransformerImpl implements XmlTransformer {
     private final XslTransformPipeline xslTransformPipeline;
     private SAXTransformerFactory transformerFactory;
 
-    public XmlToHtml5TransformerImpl(XslTransformPipeline xslTransformPipeline, TransformerFactory transformerFactory) {
+    public XmlTransformerImpl(XslTransformPipeline xslTransformPipeline, TransformerFactory transformerFactory) {
         this.xslTransformPipeline = xslTransformPipeline;
         this.transformerFactory = (SAXTransformerFactory) transformerFactory;
         transformerFactory.setAttribute("http://saxon.sf.net/feature/version-warning", Boolean.FALSE);

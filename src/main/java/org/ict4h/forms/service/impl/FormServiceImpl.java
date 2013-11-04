@@ -3,16 +3,16 @@ package org.ict4h.forms.service.impl;
 import org.dom4j.DocumentException;
 import org.ict4h.forms.data.CompositeEnketoResult;
 import org.ict4h.forms.service.FormService;
-import org.ict4h.forms.transformer.XmlToHtml5Transformer;
+import org.ict4h.forms.transformer.XmlTransformer;
 
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
 
 public class FormServiceImpl implements FormService {
 
-    private final XmlToHtml5Transformer modelToJsonTransformer;
+    private final XmlTransformer modelToJsonTransformer;
 
-    public FormServiceImpl(XmlToHtml5Transformer modelToJsonTransformer) {
+    public FormServiceImpl(XmlTransformer modelToJsonTransformer) {
         this.modelToJsonTransformer = modelToJsonTransformer;
     }
 
