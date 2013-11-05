@@ -8,5 +8,5 @@ import javax.xml.transform.TransformerException;
 import java.io.IOException;
 
 public interface FormService {
-    Form create(String xml) throws TransformerException, IOException, DocumentException;
+    Form create(String xml);
 }
