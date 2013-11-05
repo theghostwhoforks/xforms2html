@@ -1,6 +1,9 @@
 package org.ict4h.forms.transformer.impl;
 
+import org.dom4j.DocumentException;
 import org.ict4h.forms.data.EnketoResult;
+import org.ict4h.forms.data.FormEnketoResult;
+import org.ict4h.forms.data.ModelEnketoResult;
 import org.ict4h.forms.transformer.XmlTransformer;
 import org.ict4h.forms.transformer.pipeline.XslTransformPipeline;
 
@@ -28,10 +31,10 @@ public class OpenRosaToHtmlFormTransformer implements XmlTransformer {
     }
 
     @Override
-    public EnketoResult transform(String xFormXml) throws TransformerException, IOException {
+    public <T extends EnketoResult> T transform(Class<T> clazz, String xFormXml) throws TransformerException, IOException, DocumentException {
         final Stack<File> transformations = xslTransformPipeline.get();
         if(transformations.empty()){
-            return new EnketoResult("");
+            return (T) createInstance(clazz,"");
         }
 
         StringWriter writer = new StringWriter();
@@ -53,6 +56,15 @@ public class OpenRosaToHtmlFormTransformer implements XmlTransformer {
                 inputFile.deleteOnExit();
             }
         }
-        return new EnketoResult(writer.getBuffer().toString());
+        return (T) createInstance(clazz, writer.getBuffer().toString());
+    }
+
+    private <T extends EnketoResult> EnketoResult createInstance(Class<T> clazz, String transform) {
+        if(clazz.isAssignableFrom(FormEnketoResult.class))
+            return  new FormEnketoResult(transform);
+        else
+        {
+            return new ModelEnketoResult(transform);
+        }
     }
 }

@@ -7,5 +7,5 @@ import javax.xml.transform.TransformerException;
 import java.io.IOException;
 
 public interface XmlTransformer {
-    EnketoResult transform(String xFormXml) throws TransformerException, IOException, DocumentException;
+    <T extends EnketoResult> T transform(Class<T> clazz, String xFormXml) throws TransformerException, IOException, DocumentException;
 }

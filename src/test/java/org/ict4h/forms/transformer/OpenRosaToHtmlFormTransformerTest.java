@@ -4,6 +4,8 @@ import net.sf.saxon.TransformerFactoryImpl;
 import org.apache.commons.io.IOUtils;
 import org.dom4j.DocumentException;
 import org.ict4h.forms.data.EnketoResult;
+import org.ict4h.forms.data.FormEnketoResult;
+import org.ict4h.forms.data.ModelEnketoResult;
 import org.ict4h.forms.transformer.impl.OpenRosaToHtmlFormTransformer;
 import org.ict4h.forms.transformer.pipeline.XslTransformPipeline;
 import org.ict4h.forms.transformer.pipeline.factory.XslTransformPipelineFactory;
@@ -21,7 +23,7 @@ public class OpenRosaToHtmlFormTransformerTest {
         final XslTransformPipeline pipeline = XslTransformPipelineFactory.pipelineForOpenRosaToHtml5();
         final XmlTransformer transformer = new OpenRosaToHtmlFormTransformer(pipeline, new TransformerFactoryImpl());
         final String xForm = getXForm();
-        final EnketoResult enketoResult = transformer.transform(xForm);
+        final FormEnketoResult enketoResult = transformer.transform(FormEnketoResult.class,xForm);
         assertNotNull(enketoResult.getForm());
     }
 
@@ -30,7 +32,7 @@ public class OpenRosaToHtmlFormTransformerTest {
         final XslTransformPipeline pipeline = XslTransformPipelineFactory.pipelineForOpenRosaToModelXml();
         final XmlTransformer transformer = new OpenRosaToHtmlFormTransformer(pipeline, new TransformerFactoryImpl());
         final String xForm = getXForm();
-        final EnketoResult enketoResult = transformer.transform(xForm);
+        final ModelEnketoResult enketoResult = transformer.transform(ModelEnketoResult.class,xForm);
         assertNotNull(enketoResult.getModel());
     }
 

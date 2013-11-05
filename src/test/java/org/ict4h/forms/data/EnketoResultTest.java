@@ -15,24 +15,24 @@ import static org.junit.Assert.assertThat;
 public class EnketoResultTest {
     @Test(expected = NullPointerException.class)
     public void getForm_shouldEmpty() throws ParserConfigurationException, XPathExpressionException, SAXException, IOException, DocumentException {
-        EnketoResult enketoResult = new EnketoResult("<root><form><ul><li/><li/></ul></form></root>");
+        ModelEnketoResult enketoResult = new ModelEnketoResult("<root><form><ul><li/><li/></ul></form></root>");
         assertThat(enketoResult.getModel(), isEmptyOrNullString());
 
-        enketoResult = new EnketoResult("<root><model><x/><y/></model></root>");
-        assertThat(enketoResult.getForm(), isEmptyOrNullString());
+        FormEnketoResult result = new FormEnketoResult("<root><model><x/><y/></model></root>");
+        assertThat(result.getForm(), isEmptyOrNullString());
     }
 
     @Test
     public void getForm_shouldGetForm() throws DocumentException {
         String result = "<root><model><x/><y/></model><form><ul><li/><li/></ul></form></root>";
-        EnketoResult enketoResult = new EnketoResult(result);
+        FormEnketoResult enketoResult = new FormEnketoResult(result);
         assertThat(enketoResult.getForm(), is("<form><ul><li/><li/></ul></form>"));
     }
 
     @Test
     public void getForm_shouldGetModel() throws DocumentException {
         String result = "<root><model><x/><y/></model><form><ul><li/><li/></ul></form></root>";
-        EnketoResult enketoResult = new EnketoResult(result);
+        FormEnketoResult enketoResult = new FormEnketoResult(result);
         assertThat(enketoResult.getForm(), is("<form><ul><li/><li/></ul></form>"));
     }
 }

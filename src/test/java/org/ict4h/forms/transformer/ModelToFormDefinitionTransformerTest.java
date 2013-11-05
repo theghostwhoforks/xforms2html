@@ -20,7 +20,7 @@ public class ModelToFormDefinitionTransformerTest {
     public void shouldTransformXmlToHtml5() throws TransformerException, IOException, DocumentException {
         XslTransformPipeline pipeline = XslTransformPipelineFactory.pipelineForOpenRosaToFormDefinitionJson();
         final XmlTransformer transformer = new ModelToFormDefinitionTransformer(pipeline, new TransformerFactoryImpl());
-        final FormDefinitionEnketoResult result = (FormDefinitionEnketoResult) transformer.transform(getXForm());
+        final FormDefinitionEnketoResult result = transformer.transform(FormDefinitionEnketoResult.class,getXForm());
         assertNotNull(result.getModelJson());
     }
 

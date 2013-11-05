@@ -1,8 +1,9 @@
 package org.ict4h.forms.transformer.impl;
 
 import org.dom4j.DocumentException;
-import org.ict4h.forms.data.FormDefinitionEnketoResult;
 import org.ict4h.forms.data.EnketoResult;
+import org.ict4h.forms.data.FormDefinitionEnketoResult;
+import org.ict4h.forms.data.ModelEnketoResult;
 import org.ict4h.forms.transformer.XmlTransformer;
 import org.ict4h.forms.transformer.pipeline.XslTransformPipeline;
 
@@ -30,10 +31,10 @@ public class ModelToFormDefinitionTransformer implements XmlTransformer {
     }
 
     @Override
-    public EnketoResult transform(String xFormXml) throws TransformerException, IOException, DocumentException {
+    public <T extends EnketoResult> T transform(Class<T> clazz, String xFormXml) throws TransformerException, IOException, DocumentException{
         final Stack<File> transformations = pipeline.get();
         if(transformations.empty()){
-            return new EnketoResult("");
+            return (T) new FormDefinitionEnketoResult("", "");
         }
 
         StringWriter writer = new StringWriter();
@@ -46,13 +47,13 @@ public class ModelToFormDefinitionTransformer implements XmlTransformer {
             intermediateResult = new SAXResult(transformerHandler);
         }
 
-        File inputFile = createTempFile(new EnketoResult(xFormXml).getModel());
+        File inputFile = createTempFile(new ModelEnketoResult(xFormXml).getModel());
         Transformer transformer = transformerFactory.newTransformer();
         try {
             transformer.transform(new StreamSource(inputFile), intermediateResult);
         } finally {
             inputFile.delete();
         }
-        return new FormDefinitionEnketoResult(xFormXml, writer.getBuffer().toString());
+        return (T) new FormDefinitionEnketoResult(xFormXml, writer.getBuffer().toString());
     }
 }

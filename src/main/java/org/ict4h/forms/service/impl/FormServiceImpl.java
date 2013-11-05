@@ -3,6 +3,8 @@ package org.ict4h.forms.service.impl;
 import org.dom4j.DocumentException;
 import org.ict4h.forms.data.FormDefinitionEnketoResult;
 import org.ict4h.forms.data.EnketoResult;
+import org.ict4h.forms.data.FormEnketoResult;
+import org.ict4h.forms.data.ModelEnketoResult;
 import org.ict4h.forms.domain.Form;
 import org.ict4h.forms.service.FormService;
 import org.ict4h.forms.transformer.XmlTransformer;
@@ -24,10 +26,10 @@ public class FormServiceImpl implements FormService {
 
     @Override
     public Form create(String xml) throws TransformerException, IOException, DocumentException {
-        final String formXml = openRosaToHtmlFormTransformer.transform(xml).getForm();
-        final EnketoResult modelResult = openRosaToModelXmlTransformer.transform(xml);
+        final String formXml = openRosaToHtmlFormTransformer.transform(FormEnketoResult.class,xml).getForm();
+        final ModelEnketoResult modelResult = openRosaToModelXmlTransformer.transform(ModelEnketoResult.class, xml);
         final String modelXml = modelResult.getModel();
-        final FormDefinitionEnketoResult formDefinition = (FormDefinitionEnketoResult) modelToJsonTransformer.transform(modelResult.getResult());
+        final FormDefinitionEnketoResult formDefinition = modelToJsonTransformer.transform(FormDefinitionEnketoResult.class, modelResult.getResult());
         return new Form(formXml, modelXml, formDefinition.getModelJson());
     }
 }
