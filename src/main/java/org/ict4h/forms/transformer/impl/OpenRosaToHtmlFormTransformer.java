@@ -34,7 +34,7 @@ public class OpenRosaToHtmlFormTransformer implements XmlTransformer {
     public <T extends EnketoResult> T transform(Class<T> clazz, String xFormXml) throws TransformerException, IOException, DocumentException {
         final Stack<File> transformations = xslTransformPipeline.get();
         if(transformations.empty()){
-            return (T) createInstance(clazz,"");
+            return createInstance(clazz,"");
         }
 
         StringWriter writer = new StringWriter();
@@ -56,15 +56,15 @@ public class OpenRosaToHtmlFormTransformer implements XmlTransformer {
                 inputFile.deleteOnExit();
             }
         }
-        return (T) createInstance(clazz, writer.getBuffer().toString());
+        return createInstance(clazz, writer.getBuffer().toString());
     }
 
-    private <T extends EnketoResult> EnketoResult createInstance(Class<T> clazz, String transform) {
+    private <T extends EnketoResult> T createInstance(Class<T> clazz, String transform) {
         if(clazz.isAssignableFrom(FormEnketoResult.class))
-            return  new FormEnketoResult(transform);
+            return (T) new FormEnketoResult(transform);
         else
         {
-            return new ModelEnketoResult(transform);
+            return (T) new ModelEnketoResult(transform);
         }
     }
 }
