@@ -31,7 +31,7 @@ public class FormServiceImpl implements FormService {
             final ModelEnketoResult modelResult = openRosaToModelXmlTransformer.transform(ModelEnketoResult.class, xml);
             final String modelXml = modelResult.getModel();
             final FormDefinitionEnketoResult formDefinition = modelToJsonTransformer.transform(FormDefinitionEnketoResult.class, modelResult.getResult());
-            return new Form(formXml, modelXml, formDefinition.getModelJson());
+            return new Form(formXml, modelXml, formDefinition.getModelJson(), modelResult.getName());
         }
         catch (TransformerException e) {
             throw new TransformerRuntimeException("A Transformation Error was raised", e);

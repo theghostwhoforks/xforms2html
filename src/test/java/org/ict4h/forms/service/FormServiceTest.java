@@ -16,6 +16,7 @@ import org.junit.Test;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
 
+import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 
 public class FormServiceTest {
@@ -32,6 +33,7 @@ public class FormServiceTest {
         assertNotNull(form.getFormXml());
         assertNotNull(form.getModelXml());
         assertNotNull(form.getFormDefinition());
+        assertEquals("woman_reg_17Oct",form.getName());
     }
 
     private String getResourceAsStream() throws IOException {
