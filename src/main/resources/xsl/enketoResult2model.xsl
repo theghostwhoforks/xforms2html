@@ -8,7 +8,8 @@
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes" version="1.0" encoding="UTF-8"/>
     <xsl:template match="/">
         <form>
-                <xsl:apply-templates/>
+                <xsl:apply-templates select="/model/*:instance/node()"/>
+                <xsl:apply-templates select="/model/*:instance/node()/node()"/>
         </form>
     </xsl:template>
 
@@ -17,14 +18,28 @@
     <!--<xsl:template match="/root/*[local-name() != 'model']"/>-->
     <!--<xsl:template match="/root/model/instance/*[local-name() = 'root']"/>-->
 
+    <xsl:template match="/model/*:instance/node()">
+        <xsl:call-template name="bind">
+            <xsl:with-param name="bind_value" select="current()"/>
+        </xsl:call-template>
+    </xsl:template>
+
     <xsl:template match="/model/*:instance/node()/node()">
         <xsl:call-template name="copy-model">
             <xsl:with-param name="model" select="current()"/>
         </xsl:call-template>
     </xsl:template>
 
-    <xsl:template name="copy-model">
+    <xsl:template name="bind">
+        <xsl:param name="bind_value"/>
+        <xsl:if test="name($bind_value[1])">
+            <xsl:element name="bind_type">
+                <xsl:value-of select="local-name($bind_value)"/>
+            </xsl:element>
+        </xsl:if>
+    </xsl:template>
 
+    <xsl:template name="copy-model">
         <xsl:param name="model"/>
         <xsl:if test="name($model[1])">
             <xsl:element name="fields">
