@@ -36,6 +36,9 @@
             <xsl:element name="bind_type">
                 <xsl:value-of select="local-name($bind_value)"/>
             </xsl:element>
+            <xsl:element name="default_bind_path">
+                <xsl:value-of select="local-name($bind_value)"/>
+            </xsl:element>
         </xsl:if>
     </xsl:template>
 
