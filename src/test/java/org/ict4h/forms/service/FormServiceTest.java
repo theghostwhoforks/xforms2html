@@ -33,7 +33,7 @@ public class FormServiceTest {
         assertNotNull(form.getFormXml());
         assertNotNull(form.getModelXml());
         assertNotNull(form.getFormDefinition());
-        assertEquals("woman_reg_17Oct",form.getName());
+        assertEquals("pregnancy_registration_form_1nov",form.getName());
     }
 
     private String getResourceAsStream() throws IOException {
