@@ -1,334 +1,274 @@
 <?xml version="1.0" encoding="utf-8"?>
 <h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <h:head>
-        <h:title>pregnancy_registration_form_1nov</h:title>
+        <h:title>Doctor Visit Form</h:title>
         <model>
             <instance>
-                <pregnancy_registration_form_1nov id="pregnancy_registration_form_1nov">
+                <doctor_visit id="doctor_visit">
                     <formhub>
                         <uuid/>
                     </formhub>
                     <today/>
-                    <sectionA>
-                        <preg_reg_date/>
-                        <name_health_worker/>
-                        <respond_commitment/>
-                        <respond_commitment_number/>
-                        <respond_first_preg/>
-                    </sectionA>
-                    <sectionB>
-                        <current_weight/>
-                        <current_height/>
-                        <lmp/>
-                        <edd/>
-                        <edd_note/>
-                        <savings_scheme/>
-                    </sectionB>
-                    <sectionC>
-                        <age_first_preg/>
-                        <miscarriages/>
-                        <mtps/>
-                        <still_births/>
-                        <child_deaths/>
-                        <living_children/>
-                        <gravida/>
-                        <gravida_note/>
-                    </sectionC>
-                    <sectionD>
-                        <pastpreg_risks/>
-                    </sectionD>
-                    <sectionE>
-                        <currpreg_risk/>
-                        <currpreg_risk_other/>
-                    </sectionE>
+                    <date/>
+                    <doctor/>
+                    <beneficiary/>
+                    <visitReason/>
+                    <weight/>
+                    <height/>
+                    <temperature/>
+                    <bloodPressure/>
+                    <fundalHeight/>
+                    <chiefComplaint/>
+                    <assessment/>
+                    <healthProblems/>
+                    <healthProblemsOther/>
+                    <diagnosis/>
+                    <medications jr:template="">
+                        <medicationName/>
+                        <dose/>
+                        <unit/>
+                        <duration/>
+                        <instructions/>
+                    </medications>
+                    <tests jr:template="">
+                        <testRequired/>
+                        <testRequiredName/>
+                    </tests>
+                    <hospitalVisit/>
+                    <followUp/>
+                    <clinicalNote/>
                     <meta>
                         <instanceID/>
                     </meta>
-                </pregnancy_registration_form_1nov>
+                </doctor_visit>
             </instance>
-            <bind jr:preload="date" jr:preloadParams="today" nodeset="/pregnancy_registration_form_1nov/today" type="date"/>
-            <bind nodeset="/pregnancy_registration_form_1nov/sectionA/preg_reg_date" type="date"/>
-            <bind nodeset="/pregnancy_registration_form_1nov/sectionA/name_health_worker" type="select1"/>
-            <bind nodeset="/pregnancy_registration_form_1nov/sectionA/respond_commitment" type="select1"/>
-            <bind nodeset="/pregnancy_registration_form_1nov/sectionA/respond_commitment_number" type="int"/>
-            <bind nodeset="/pregnancy_registration_form_1nov/sectionA/respond_first_preg" type="select1"/>
-            <bind nodeset="/pregnancy_registration_form_1nov/sectionB/current_weight" type="decimal"/>
-            <bind nodeset="/pregnancy_registration_form_1nov/sectionB/current_height" type="decimal"/>
-            <bind nodeset="/pregnancy_registration_form_1nov/sectionB/lmp" type="date"/>
-            <bind calculate="date( /pregnancy_registration_form_1nov/sectionB/lmp +280)" nodeset="/pregnancy_registration_form_1nov/sectionB/edd" type="string"/>
-            <bind nodeset="/pregnancy_registration_form_1nov/sectionB/edd_note" readonly="true()" relevant=" /pregnancy_registration_form_1nov/sectionB/edd  != ''" type="string"/>
-            <bind nodeset="/pregnancy_registration_form_1nov/sectionB/savings_scheme" type="select1"/>
-            <bind nodeset="/pregnancy_registration_form_1nov/sectionC" relevant=" /pregnancy_registration_form_1nov/sectionA/respond_first_preg = 'no'"/>
-            <bind nodeset="/pregnancy_registration_form_1nov/sectionC/age_first_preg" type="int"/>
-            <bind nodeset="/pregnancy_registration_form_1nov/sectionC/miscarriages" type="int"/>
-            <bind nodeset="/pregnancy_registration_form_1nov/sectionC/mtps" type="int"/>
-            <bind nodeset="/pregnancy_registration_form_1nov/sectionC/still_births" type="int"/>
-            <bind nodeset="/pregnancy_registration_form_1nov/sectionC/child_deaths" type="int"/>
-            <bind nodeset="/pregnancy_registration_form_1nov/sectionC/living_children" type="int"/>
-            <bind calculate=" /pregnancy_registration_form_1nov/sectionC/miscarriages  +  /pregnancy_registration_form_1nov/sectionC/mtps  +  /pregnancy_registration_form_1nov/sectionC/still_births  +  /pregnancy_registration_form_1nov/sectionC/child_deaths  +  /pregnancy_registration_form_1nov/sectionC/living_children  + 1" nodeset="/pregnancy_registration_form_1nov/sectionC/gravida" type="string"/>
-            <bind nodeset="/pregnancy_registration_form_1nov/sectionC/gravida_note" readonly="true()" type="string"/>
-            <bind nodeset="/pregnancy_registration_form_1nov/sectionD" relevant=" /pregnancy_registration_form_1nov/sectionA/respond_first_preg = 'no'"/>
-            <bind nodeset="/pregnancy_registration_form_1nov/sectionD/pastpreg_risks" type="select"/>
-            <bind nodeset="/pregnancy_registration_form_1nov/sectionE/currpreg_risk" type="select"/>
-            <bind nodeset="/pregnancy_registration_form_1nov/sectionE/currpreg_risk_other" relevant="selected ( /pregnancy_registration_form_1nov/sectionE/currpreg_risk , 'other')" type="string"/>
-            <bind calculate="concat('uuid:', uuid())" nodeset="/pregnancy_registration_form_1nov/meta/instanceID" readonly="true()" type="string"/>
-            <bind calculate="'da1b9dd8cd5c407489402f8283df90da'" nodeset="/pregnancy_registration_form_1nov/formhub/uuid" type="string"/>
+            <bind jr:preload="date" jr:preloadParams="today" nodeset="/doctor_visit/today" type="date"/>
+            <bind nodeset="/doctor_visit/date" type="date"/>
+            <bind nodeset="/doctor_visit/doctor" type="select1"/>
+            <bind nodeset="/doctor_visit/beneficiary" type="select1"/>
+            <bind nodeset="/doctor_visit/visitReason" relevant="selected ( /doctor_visit/beneficiary , 'pregnantWoman')" required="true()" type="select1"/>
+            <bind nodeset="/doctor_visit/weight" type="decimal"/>
+            <bind nodeset="/doctor_visit/height" relevant="selected ( /doctor_visit/beneficiary , 'pregnantWoman') or selected ( /doctor_visit/beneficiary , 'mother')" type="decimal"/>
+            <bind nodeset="/doctor_visit/temperature" type="decimal"/>
+            <bind nodeset="/doctor_visit/bloodPressure" relevant="selected ( /doctor_visit/beneficiary , 'pregnantWoman')" type="string"/>
+            <bind nodeset="/doctor_visit/fundalHeight" relevant="selected ( /doctor_visit/beneficiary , 'pregnantWoman')" type="decimal"/>
+            <bind nodeset="/doctor_visit/chiefComplaint" type="string"/>
+            <bind nodeset="/doctor_visit/assessment" type="string"/>
+            <bind nodeset="/doctor_visit/healthProblems" type="select"/>
+            <bind nodeset="/doctor_visit/healthProblemsOther" relevant="selected ( /doctor_visit/healthProblems , 'other')" type="string"/>
+            <bind nodeset="/doctor_visit/diagnosis" type="string"/>
+            <bind nodeset="/doctor_visit/medications/medicationName" type="string"/>
+            <bind nodeset="/doctor_visit/medications/dose" type="string"/>
+            <bind nodeset="/doctor_visit/medications/unit" type="select1"/>
+            <bind nodeset="/doctor_visit/medications/duration" type="string"/>
+            <bind nodeset="/doctor_visit/medications/instructions" type="string"/>
+            <bind nodeset="/doctor_visit/tests/testRequired" type="select1"/>
+            <bind nodeset="/doctor_visit/tests/testRequiredName" relevant="selected ( /doctor_visit/tests/testRequired , 'yes')" required="true()" type="string"/>
+            <bind nodeset="/doctor_visit/hospitalVisit" type="select1"/>
+            <bind nodeset="/doctor_visit/followUp" type="date"/>
+            <bind nodeset="/doctor_visit/clinicalNote" type="string"/>
+            <bind calculate="concat('uuid:', uuid())" nodeset="/doctor_visit/meta/instanceID" readonly="true()" type="string"/>
+            <bind calculate="'9575ce24f83a4cc1a06f1eda33e2ec38'" nodeset="/doctor_visit/formhub/uuid" type="string"/>
         </model>
     </h:head>
     <h:body>
-        <group ref="/pregnancy_registration_form_1nov/sectionA">
-            <label>Basic Information</label>
-            <input ref="/pregnancy_registration_form_1nov/sectionA/preg_reg_date">
-                <label>Pregnancy registered on</label>
-            </input>
-            <select1 appearance="minimal" ref="/pregnancy_registration_form_1nov/sectionA/name_health_worker">
-                <label>Health Worker's name</label>
-                <item>
-                    <label>Laxmi G</label>
-                    <value>laxmi_g</value>
-                </item>
-                <item>
-                    <label>Zeenat N</label>
-                    <value>zeenat_n</value>
-                </item>
-                <item>
-                    <label>Mita C</label>
-                    <value>mita_d</value>
-                </item>
-                <item>
-                    <label>Munni D</label>
-                    <value>munni_d</value>
-                </item>
-                <item>
-                    <label>Sima D</label>
-                    <value>sima_d</value>
-                </item>
-                <item>
-                    <label>Sujata S</label>
-                    <value>sujata_s</value>
-                </item>
-                <item>
-                    <label>Barnali B</label>
-                    <value>barnali_b</value>
-                </item>
-                <item>
-                    <label>Kaberi M</label>
-                    <value>kaberi_m</value>
-                </item>
-                <item>
-                    <label>Malti G</label>
-                    <value>malti_g</value>
-                </item>
-            </select1>
-            <select1 ref="/pregnancy_registration_form_1nov/sectionA/respond_commitment">
-                <label>Service commitment type</label>
-                <item>
-                    <label>First trimester (0-3 months)</label>
-                    <value>first_trimester</value>
-                </item>
-                <item>
-                    <label>Second trimester (4-6 months)</label>
-                    <value>second_trimester</value>
-                </item>
-                <item>
-                    <label>Third trimester (7+ months)</label>
-                    <value>third_trimester</value>
-                </item>
-            </select1>
-            <input ref="/pregnancy_registration_form_1nov/sectionA/respond_commitment_number">
-                <label>Service commitment serial number</label>
-            </input>
-            <select1 ref="/pregnancy_registration_form_1nov/sectionA/respond_first_preg">
-                <label>Is this your first pregnancy?</label>
-                <item>
-                    <label>Yes</label>
-                    <value>yes</value>
-                </item>
-                <item>
-                    <label>No</label>
-                    <value>no</value>
-                </item>
-            </select1>
+        <input ref="/doctor_visit/date">
+            <label>Date of visit</label>
+        </input>
+        <select1 appearance="minimal" ref="/doctor_visit/doctor">
+            <label>Doctor's name</label>
+            <item>
+                <label>Dr. S Chowdhury</label>
+                <value>chowdhury</value>
+            </item>
+            <item>
+                <label>Dr. S Sen</label>
+                <value>sen</value>
+            </item>
+            <item>
+                <label>Dr. U.K. Roy</label>
+                <value>roy</value>
+            </item>
+        </select1>
+        <select1 appearance="minimal" ref="/doctor_visit/beneficiary">
+            <label>Beneficiary Type</label>
+            <item>
+                <label>Mother</label>
+                <value>mother</value>
+            </item>
+            <item>
+                <label>Child</label>
+                <value>child</value>
+            </item>
+            <item>
+                <label>Pregnant Woman</label>
+                <value>pregnantWoman</value>
+            </item>
+        </select1>
+        <select1 appearance="minimal" ref="/doctor_visit/visitReason">
+            <label>Reason for doctor visit</label>
+            <item>
+                <label>Regular ANC check up</label>
+                <value>ancDoctorVisit</value>
+            </item>
+            <item>
+                <label>Other</label>
+                <value>otherDoctorVisit</value>
+            </item>
+        </select1>
+        <input ref="/doctor_visit/weight">
+            <label>Weight (kg)</label>
+        </input>
+        <input ref="/doctor_visit/height">
+            <label>Height (cm)</label>
+        </input>
+        <input ref="/doctor_visit/temperature">
+            <label>Temperature (°F)</label>
+        </input>
+        <input ref="/doctor_visit/bloodPressure">
+            <label>Blood Pressure</label>
+        </input>
+        <input ref="/doctor_visit/fundalHeight">
+            <label>Fundal Height (cm)</label>
+        </input>
+        <input appearance="text-area" ref="/doctor_visit/chiefComplaint">
+            <label>Chief Complaint</label>
+        </input>
+        <input appearance="text-area" ref="/doctor_visit/assessment">
+            <label>Assessment</label>
+        </input>
+        <select ref="/doctor_visit/healthProblems">
+            <label>Health Problem/ Classification</label>
+            <item>
+                <label>Congenital / Developmental disorders</label>
+                <value>congenital</value>
+            </item>
+            <item>
+                <label>Dermatological</label>
+                <value>dermatological</value>
+            </item>
+            <item>
+                <label>Endocrinological disorder</label>
+                <value>endocrinological</value>
+            </item>
+            <item>
+                <label>ENT</label>
+                <value>ent</value>
+            </item>
+            <item>
+                <label>Fever of unknown origin/ fever with rash</label>
+                <value>fever</value>
+            </item>
+            <item>
+                <label>Gastrointestinal</label>
+                <value>gastrointestinal</value>
+            </item>
+            <item>
+                <label>General Trauma/burn injury</label>
+                <value>generalTrauma</value>
+            </item>
+            <item>
+                <label>Genitourinary/ Gynecological</label>
+                <value>genitourinary</value>
+            </item>
+            <item>
+                <label>Infectious disease</label>
+                <value>infectiousDisease</value>
+            </item>
+            <item>
+                <label>Neurological</label>
+                <value>neurological</value>
+            </item>
+            <item>
+                <label>Nutritional deficiency</label>
+                <value>nutritionalDeficiency</value>
+            </item>
+            <item>
+                <label>Ophthalmic infection/allergy</label>
+                <value>ophthalmic</value>
+            </item>
+            <item>
+                <label>Respiratory</label>
+                <value>respiratory</value>
+            </item>
+            <item>
+                <label>Pregnancy, childbirth, and the puerperium</label>
+                <value>childBirth</value>
+            </item>
+            <item>
+                <label>Other</label>
+                <value>other</value>
+            </item>
+        </select>
+        <input appearance="text-area" ref="/doctor_visit/healthProblemsOther">
+            <label>Please specify other:</label>
+        </input>
+        <input appearance="text-area" ref="/doctor_visit/diagnosis">
+            <label>Diagnosis</label>
+        </input>
+        <group ref="/doctor_visit/medications">
+            <label>Medications</label>
+            <repeat nodeset="/doctor_visit/medications">
+                <input ref="/doctor_visit/medications/medicationName">
+                    <label>Name</label>
+                </input>
+                <input ref="/doctor_visit/medications/dose">
+                    <label>Dose</label>
+                </input>
+                <select1 appearance="minimal" ref="/doctor_visit/medications/unit">
+                    <label>Dose unit</label>
+                    <item>
+                        <label>mg</label>
+                        <value>mg</value>
+                    </item>
+                    <item>
+                        <label>ml</label>
+                        <value>ml</value>
+                    </item>
+                </select1>
+                <input ref="/doctor_visit/medications/duration">
+                    <label>Duration</label>
+                </input>
+                <input appearance="text-area" ref="/doctor_visit/medications/instructions">
+                    <label>Administration Instructions</label>
+                </input>
+            </repeat>
         </group>
-        <group ref="/pregnancy_registration_form_1nov/sectionB">
-            <label>Current Pregnancy Details</label>
-            <input ref="/pregnancy_registration_form_1nov/sectionB/current_weight">
-                <label>Current Weight (kg)</label>
-            </input>
-            <input ref="/pregnancy_registration_form_1nov/sectionB/current_height">
-                <label>Current Height (cm)</label>
-            </input>
-            <input ref="/pregnancy_registration_form_1nov/sectionB/lmp">
-                <label>LMP</label>
-            </input>
-            <input ref="/pregnancy_registration_form_1nov/sectionB/edd_note">
-                <label>Expected Date of Delivery: <output value=" /pregnancy_registration_form_1nov/sectionB/edd "/></label></input>
-            <select1 ref="/pregnancy_registration_form_1nov/sectionB/savings_scheme">
-                <label>Enrolling in Delivery Savings Scheme</label>
-                <item>
-                    <label>Yes</label>
-                    <value>yes</value>
-                </item>
-                <item>
-                    <label>No</label>
-                    <value>no</value>
-                </item>
-            </select1>
+        <group ref="/doctor_visit/tests">
+            <label>Tests</label>
+            <repeat nodeset="/doctor_visit/tests">
+                <select1 appearance="minimal" ref="/doctor_visit/tests/testRequired">
+                    <label>Test Required</label>
+                    <item>
+                        <label>Yes</label>
+                        <value>yes</value>
+                    </item>
+                    <item>
+                        <label>No</label>
+                        <value>no</value>
+                    </item>
+                </select1>
+                <input appearance="text-area" ref="/doctor_visit/tests/testRequiredName">
+                    <label>Name of test:</label>
+                </input>
+            </repeat>
         </group>
-        <group ref="/pregnancy_registration_form_1nov/sectionC">
-            <label>Past Pregnancy History</label>
-            <input ref="/pregnancy_registration_form_1nov/sectionC/age_first_preg">
-                <label>Age at first pregnancy</label>
-            </input>
-            <input ref="/pregnancy_registration_form_1nov/sectionC/miscarriages">
-                <label>Number of miscarriages</label>
-            </input>
-            <input ref="/pregnancy_registration_form_1nov/sectionC/mtps">
-                <label>Number of medically terminated pregnancies</label>
-            </input>
-            <input ref="/pregnancy_registration_form_1nov/sectionC/still_births">
-                <label>Number of still births</label>
-            </input>
-            <input ref="/pregnancy_registration_form_1nov/sectionC/child_deaths">
-                <label>Number of child deaths</label>
-            </input>
-            <input ref="/pregnancy_registration_form_1nov/sectionC/living_children">
-                <label>Number of living children</label>
-            </input>
-            <input ref="/pregnancy_registration_form_1nov/sectionC/gravida_note">
-                <label>Gravida score is <output value=" /pregnancy_registration_form_1nov/sectionC/gravida "/></label></input>
-        </group>
-        <group ref="/pregnancy_registration_form_1nov/sectionD">
-            <label>Past Pregnancy Problems</label>
-            <select ref="/pregnancy_registration_form_1nov/sectionD/pastpreg_risks">
-                <label>During any of your past pregnancies have you had</label>
-                <item>
-                    <label>Eclampsia )Mirgi/tarka</label>
-                    <value>eclampsia</value>
-                </item>
-                <item>
-                    <label>Pre-mature delivery</label>
-                    <value>premature_delivery</value>
-                </item>
-                <item>
-                    <label>Obstructed labor</label>
-                    <value>obstructed_labor</value>
-                </item>
-                <item>
-                    <label>Prolonged labor (18 hours +)</label>
-                    <value>prolonged_labor</value>
-                </item>
-                <item>
-                    <label>Heavy bleeding during delivery</label>
-                    <value>bleed_during</value>
-                </item>
-                <item>
-                    <label>Heavy bleeding after delivery</label>
-                    <value>bleed_after</value>
-                </item>
-                <item>
-                    <label>C-section</label>
-                    <value>c_section</value>
-                </item>
-            </select>
-        </group>
-        <group ref="/pregnancy_registration_form_1nov/sectionE">
-            <label>Current Pregnancy Risks</label>
-            <select appearance="table-list" ref="/pregnancy_registration_form_1nov/sectionE/currpreg_risk">
-                <label>What are your current pregnancy risks?</label>
-                <hint>Information is important for the health of the child</hint>
-                <item>
-                    <label>Below 18</label>
-                    <value>below_18</value>
-                </item>
-                <item>
-                    <label>Above 40</label>
-                    <value>above_40</value>
-                </item>
-                <item>
-                    <label>Below 137 cm</label>
-                    <value>below_137cm</value>
-                </item>
-                <item>
-                    <label>Low BMI</label>
-                    <value>low_bmi</value>
-                </item>
-                <item>
-                    <label>First Pregnancy</label>
-                    <value>1st_preg</value>
-                </item>
-                <item>
-                    <label>Fourth or higher pregnancy</label>
-                    <value>4th_or_higher_prg</value>
-                </item>
-                <item>
-                    <label>Multiples</label>
-                    <value>multiples</value>
-                </item>
-                <item>
-                    <label>Infertility</label>
-                    <value>infertility</value>
-                </item>
-                <item>
-                    <label>Anaemia symptoms</label>
-                    <value>anaemia_symptoms</value>
-                </item>
-                <item>
-                    <label>Current malaria</label>
-                    <value>current_malaria</value>
-                </item>
-                <item>
-                    <label>Current TB</label>
-                    <value>current_tb</value>
-                </item>
-                <item>
-                    <label>Diabetes</label>
-                    <value>diabetes</value>
-                </item>
-                <item>
-                    <label>Heart disease</label>
-                    <value>heart_disease</value>
-                </item>
-                <item>
-                    <label>HIV/AIDS</label>
-                    <value>hiv_aids</value>
-                </item>
-                <item>
-                    <label>Hypertension</label>
-                    <value>hypertension</value>
-                </item>
-                <item>
-                    <label>Hypothyroidism</label>
-                    <value>hypothyroidism</value>
-                </item>
-                <item>
-                    <label>Family history of Thalessemia</label>
-                    <value>fam_hist_thalessemia</value>
-                </item>
-                <item>
-                    <label>Family history of Diabetes</label>
-                    <value>fam_hist_diabetes</value>
-                </item>
-                <item>
-                    <label>Sexually transmitted disease</label>
-                    <value>sex_trans_disease</value>
-                </item>
-                <item>
-                    <label>History of UTI</label>
-                    <value>hist_uti</value>
-                </item>
-                <item>
-                    <label>History of hepatitis infection</label>
-                    <value>hist_hepatitis</value>
-                </item>
-                <item>
-                    <label>Other</label>
-                    <value>other</value>
-                </item>
-            </select>
-            <input ref="/pregnancy_registration_form_1nov/sectionE/currpreg_risk_other">
-                <label>Please specify other</label>
-            </input>
-        </group>
+        <select1 appearance="minimal" ref="/doctor_visit/hospitalVisit">
+            <label>Patient was adviced to visit the hospital</label>
+            <item>
+                <label>Yes</label>
+                <value>yes</value>
+            </item>
+            <item>
+                <label>No</label>
+                <value>no</value>
+            </item>
+        </select1>
+        <input ref="/doctor_visit/followUp">
+            <label>Date of follow up visit</label>
+        </input>
+        <input appearance="text-area" ref="/doctor_visit/clinicalNote">
+            <label>Clinical note/ other advice</label>
+        </input>
     </h:body>
 </h:html>

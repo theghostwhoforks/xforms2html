@@ -21,19 +21,17 @@ import static junit.framework.Assert.assertNotNull;
 
 public class FormServiceTest {
     @Test
-    public void shouldDoSomething() throws IOException, TransformerException, DocumentException {
-        XslTransformPipeline openRosaToHtmlPipeline = XslTransformPipelineFactory.pipelineForOpenRosaToHtml5();
-        XmlTransformer openRosaToFormXmlTransformer = new OpenRosaToHtmlFormTransformer(openRosaToHtmlPipeline,new TransformerFactoryImpl());
+    public void shouldAssertThatServiceReturnsAResult() throws IOException, TransformerException, DocumentException {
+        XmlTransformer openRosaToFormXmlTransformer = new OpenRosaToHtmlFormTransformer(XslTransformPipelineFactory.pipelineForOpenRosaToHtml5(),new TransformerFactoryImpl());
         XmlTransformer openRosaToModelXmlTransformer = new OpenRosaToHtmlFormTransformer(XslTransformPipelineFactory.pipelineForOpenRosaToModelXml(),new TransformerFactoryImpl());
-        final XslTransformPipeline openRosaToFormDefinitionPipeline = XslTransformPipelineFactory.pipelineForOpenRosaToFormDefinitionJson();
-        XmlTransformer formDefinitionTransformer = new ModelToFormDefinitionTransformer(openRosaToFormDefinitionPipeline,new TransformerFactoryImpl());
+        XmlTransformer formDefinitionTransformer = new ModelToFormDefinitionTransformer(XslTransformPipelineFactory.pipelineForOpenRosaToFormDefinitionJson(),new TransformerFactoryImpl());
         final FormService service = new FormServiceImpl(openRosaToFormXmlTransformer, openRosaToModelXmlTransformer,formDefinitionTransformer);
         final String xml = getResourceAsStream();
         final Form form = service.create(xml);
         assertNotNull(form.getFormXml());
         assertNotNull(form.getModelXml());
         assertNotNull(form.getFormDefinition());
-        assertEquals("pregnancy_registration_form_1nov",form.getName());
+        assertEquals("doctor_visit",form.getName());
     }
 
     private String getResourceAsStream() throws IOException {
