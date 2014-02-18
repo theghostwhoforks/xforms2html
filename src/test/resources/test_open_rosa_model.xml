@@ -4,43 +4,109 @@
       xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <model>
         <instance xmlns="http://www.w3.org/2002/xforms" xmlns:orx="http://openrosa.org/xforms/">
-            <doctor_visit id="doctor_visit">
+            <ses_form id="ses_form">
                 <formhub>
                     <uuid/>
                 </formhub>
                 <today/>
-                <date/>
-                <doctor/>
-                <beneficiary/>
-                <visitReason/>
-                <weight/>
-                <height/>
-                <temperature/>
-                <bloodPressure/>
-                <fundalHeight/>
-                <chiefComplaint/>
-                <assessment/>
-                <healthProblems/>
-                <healthProblemsOther/>
-                <diagnosis/>
-                <medications template="">
-                    <medicationName/>
-                    <dose/>
-                    <unit/>
-                    <duration/>
-                    <instructions/>
-                </medications>
-                <tests template="">
-                    <testRequired/>
-                    <testRequiredName/>
-                </tests>
-                <hospitalVisit/>
-                <followUp/>
-                <clinicalNote/>
+                <sectionA>
+                    <healthWorker/>
+                    <date/>
+                    <time/>
+                </sectionA>
+                <sectionB>
+                    <maritalStatus/>
+                    <maritalStatusOther/>
+                    <ageFirstMarriage/>
+                    <religion/>
+                    <religionOther/>
+                    <bplCard/>
+                    <healthInsurance/>
+                    <householdMembers/>
+                    <youngHouseholdMembers/>
+                    <migrants/>
+                    <migratedFrom/>
+                    <migratedFromOther/>
+                    <literacyTest/>
+                    <literacy/>
+                    <educationLevel/>
+                    <husbandLiteracy/>
+                    <occupation/>
+                    <occupationPlus/>
+                    <occupationOther/>
+                    <additionalWorkLocation/>
+                    <husbandOccupation/>
+                    <otherIncomeEarner/>
+                    <otherIncomeEarnerOccupation/>
+                    <principleOccupation/>
+                    <householdIncome/>
+                    <incomePer/>
+                    <numberWeeksWorked/>
+                    <numberDaysWorked/>
+                    <monthlyIncomeWeeks/>
+                    <monthlyIncomeDays/>
+                    <incomeNoteWeek/>
+                    <incomeNoteDay/>
+                </sectionB>
+                <sectionC>
+                    <houseLocation/>
+                    <accommodation/>
+                    <accommodationOther/>
+                    <householdTelevision/>
+                    <householdTransportation/>
+                    <householdAlmirah/>
+                    <householdSewing/>
+                    <householdCookers/>
+                    <householdFans/>
+                    <householdEnergy/>
+                    <ppi/>
+                    <ppiNote/>
+                    <householdToilet/>
+                    <toiletTnfo/>
+                </sectionC>
+                <sectionD>
+                    <pregnancyCare/>
+                    <pregnancyCareLocations/>
+                    <pregnancyCareOther/>
+                    <gmp/>
+                    <gmpLocations/>
+                    <gmpOther/>
+                    <food/>
+                    <foodLocations/>
+                    <foodOther/>
+                    <medicalAttention/>
+                    <medicalAttentionLocations/>
+                    <medicalAttentionOther/>
+                    <immunizations/>
+                    <immunizationsLocations/>
+                    <immunizationsOther/>
+                    <emergencyServices/>
+                    <emergencyServicesLocations/>
+                    <emergencyServicesOther/>
+                    <otherServices/>
+                    <otherServicesLocations/>
+                    <otherServicesOther/>
+                </sectionD>
+                <sectionE>
+                    <childCalcuttaKids template="">
+                        <childId/>
+                    </childCalcuttaKids>
+                    <child template="">
+                        <dateOfBirth/>
+                        <age/>
+                        <dateOfBirthCalculated/>
+                        <ageYears/>
+                        <ageMonths/>
+                        <remainderMonths/>
+                        <ageNote/>
+                        <childGender/>
+                    </child>
+                </sectionE>
+                <timeout/>
                 <meta>
                     <instanceID/>
                 </meta>
-            </doctor_visit>
+            </ses_form>
         </instance>
     </model>
 </root>

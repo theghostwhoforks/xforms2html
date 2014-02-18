@@ -1,274 +1,1105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <h:head>
-        <h:title>Doctor Visit Form</h:title>
+        <h:title>SES Form</h:title>
         <model>
             <instance>
-                <doctor_visit id="doctor_visit">
+                <ses_form id="ses_form">
                     <formhub>
                         <uuid/>
                     </formhub>
                     <today/>
-                    <date/>
-                    <doctor/>
-                    <beneficiary/>
-                    <visitReason/>
-                    <weight/>
-                    <height/>
-                    <temperature/>
-                    <bloodPressure/>
-                    <fundalHeight/>
-                    <chiefComplaint/>
-                    <assessment/>
-                    <healthProblems/>
-                    <healthProblemsOther/>
-                    <diagnosis/>
-                    <medications jr:template="">
-                        <medicationName/>
-                        <dose/>
-                        <unit/>
-                        <duration/>
-                        <instructions/>
-                    </medications>
-                    <tests jr:template="">
-                        <testRequired/>
-                        <testRequiredName/>
-                    </tests>
-                    <hospitalVisit/>
-                    <followUp/>
-                    <clinicalNote/>
+                    <sectionA>
+                        <healthWorker/>
+                        <date/>
+                        <time/>
+                    </sectionA>
+                    <sectionB>
+                        <maritalStatus/>
+                        <maritalStatusOther/>
+                        <ageFirstMarriage/>
+                        <religion/>
+                        <religionOther/>
+                        <bplCard/>
+                        <healthInsurance/>
+                        <householdMembers/>
+                        <youngHouseholdMembers/>
+                        <migrants/>
+                        <migratedFrom/>
+                        <migratedFromOther/>
+                        <literacyTest/>
+                        <literacy/>
+                        <educationLevel/>
+                        <husbandLiteracy/>
+                        <occupation/>
+                        <occupationPlus/>
+                        <occupationOther/>
+                        <additionalWorkLocation/>
+                        <husbandOccupation/>
+                        <otherIncomeEarner/>
+                        <otherIncomeEarnerOccupation/>
+                        <principleOccupation/>
+                        <householdIncome/>
+                        <incomePer/>
+                        <numberWeeksWorked/>
+                        <numberDaysWorked/>
+                        <monthlyIncomeWeeks/>
+                        <monthlyIncomeDays/>
+                        <incomeNoteWeek/>
+                        <incomeNoteDay/>
+                    </sectionB>
+                    <sectionC>
+                        <houseLocation/>
+                        <accommodation/>
+                        <accommodationOther/>
+                        <householdTelevision/>
+                        <householdTransportation/>
+                        <householdAlmirah/>
+                        <householdSewing/>
+                        <householdCookers/>
+                        <householdFans/>
+                        <householdEnergy/>
+                        <ppi/>
+                        <ppiNote/>
+                        <householdToilet/>
+                        <toiletTnfo/>
+                    </sectionC>
+                    <sectionD>
+                        <pregnancyCare/>
+                        <pregnancyCareLocations/>
+                        <pregnancyCareOther/>
+                        <gmp/>
+                        <gmpLocations/>
+                        <gmpOther/>
+                        <food/>
+                        <foodLocations/>
+                        <foodOther/>
+                        <medicalAttention/>
+                        <medicalAttentionLocations/>
+                        <medicalAttentionOther/>
+                        <immunizations/>
+                        <immunizationsLocations/>
+                        <immunizationsOther/>
+                        <emergencyServices/>
+                        <emergencyServicesLocations/>
+                        <emergencyServicesOther/>
+                        <otherServices/>
+                        <otherServicesLocations/>
+                        <otherServicesOther/>
+                    </sectionD>
+                    <sectionE>
+                        <childCalcuttaKids jr:template="">
+                            <childId/>
+                        </childCalcuttaKids>
+                        <child jr:template="">
+                            <dateOfBirth/>
+                            <age/>
+                            <dateOfBirthCalculated/>
+                            <ageYears/>
+                            <ageMonths/>
+                            <remainderMonths/>
+                            <ageNote/>
+                            <childGender/>
+                        </child>
+                    </sectionE>
+                    <timeout/>
                     <meta>
                         <instanceID/>
                     </meta>
-                </doctor_visit>
+                </ses_form>
             </instance>
-            <bind jr:preload="date" jr:preloadParams="today" nodeset="/doctor_visit/today" type="date"/>
-            <bind nodeset="/doctor_visit/date" type="date"/>
-            <bind nodeset="/doctor_visit/doctor" type="select1"/>
-            <bind nodeset="/doctor_visit/beneficiary" type="select1"/>
-            <bind nodeset="/doctor_visit/visitReason" relevant="selected ( /doctor_visit/beneficiary , 'pregnantWoman')" required="true()" type="select1"/>
-            <bind nodeset="/doctor_visit/weight" type="decimal"/>
-            <bind nodeset="/doctor_visit/height" relevant="selected ( /doctor_visit/beneficiary , 'pregnantWoman') or selected ( /doctor_visit/beneficiary , 'mother')" type="decimal"/>
-            <bind nodeset="/doctor_visit/temperature" type="decimal"/>
-            <bind nodeset="/doctor_visit/bloodPressure" relevant="selected ( /doctor_visit/beneficiary , 'pregnantWoman')" type="string"/>
-            <bind nodeset="/doctor_visit/fundalHeight" relevant="selected ( /doctor_visit/beneficiary , 'pregnantWoman')" type="decimal"/>
-            <bind nodeset="/doctor_visit/chiefComplaint" type="string"/>
-            <bind nodeset="/doctor_visit/assessment" type="string"/>
-            <bind nodeset="/doctor_visit/healthProblems" type="select"/>
-            <bind nodeset="/doctor_visit/healthProblemsOther" relevant="selected ( /doctor_visit/healthProblems , 'other')" type="string"/>
-            <bind nodeset="/doctor_visit/diagnosis" type="string"/>
-            <bind nodeset="/doctor_visit/medications/medicationName" type="string"/>
-            <bind nodeset="/doctor_visit/medications/dose" type="string"/>
-            <bind nodeset="/doctor_visit/medications/unit" type="select1"/>
-            <bind nodeset="/doctor_visit/medications/duration" type="string"/>
-            <bind nodeset="/doctor_visit/medications/instructions" type="string"/>
-            <bind nodeset="/doctor_visit/tests/testRequired" type="select1"/>
-            <bind nodeset="/doctor_visit/tests/testRequiredName" relevant="selected ( /doctor_visit/tests/testRequired , 'yes')" required="true()" type="string"/>
-            <bind nodeset="/doctor_visit/hospitalVisit" type="select1"/>
-            <bind nodeset="/doctor_visit/followUp" type="date"/>
-            <bind nodeset="/doctor_visit/clinicalNote" type="string"/>
-            <bind calculate="concat('uuid:', uuid())" nodeset="/doctor_visit/meta/instanceID" readonly="true()" type="string"/>
-            <bind calculate="'9575ce24f83a4cc1a06f1eda33e2ec38'" nodeset="/doctor_visit/formhub/uuid" type="string"/>
+            <bind jr:preload="date" jr:preloadParams="today" nodeset="/ses_form/today" type="date"/>
+            <bind nodeset="/ses_form/sectionA/healthWorker" required="true()" type="select1"/>
+            <bind nodeset="/ses_form/sectionA/date" required="true()" type="date"/>
+            <bind nodeset="/ses_form/sectionA/time" type="time"/>
+            <bind nodeset="/ses_form/sectionB/maritalStatus" type="select1"/>
+            <bind nodeset="/ses_form/sectionB/maritalStatusOther" relevant="selected ( /ses_form/sectionB/maritalStatus , 'otherMaritalStatus')" type="string"/>
+            <bind nodeset="/ses_form/sectionB/ageFirstMarriage" type="int"/>
+            <bind nodeset="/ses_form/sectionB/religion" type="select1"/>
+            <bind nodeset="/ses_form/sectionB/religionOther" relevant="selected ( /ses_form/sectionB/religion , 'otherReligion')" type="string"/>
+            <bind nodeset="/ses_form/sectionB/bplCard" type="select1"/>
+            <bind nodeset="/ses_form/sectionB/healthInsurance" relevant="selected( /ses_form/sectionB/bplCard , 'yes')" type="select1"/>
+            <bind nodeset="/ses_form/sectionB/householdMembers" type="int"/>
+            <bind nodeset="/ses_form/sectionB/youngHouseholdMembers" required="true()" type="select1"/>
+            <bind nodeset="/ses_form/sectionB/migrants" type="select1"/>
+            <bind nodeset="/ses_form/sectionB/migratedFrom" relevant="selected( /ses_form/sectionB/migrants , 'yes')" type="select1"/>
+            <bind nodeset="/ses_form/sectionB/migratedFromOther" relevant="selected ( /ses_form/sectionB/migratedFrom , 'otherMigratedFrom')" type="string"/>
+            <bind nodeset="/ses_form/sectionB/literacyTest" readonly="true()" type="string"/>
+            <bind nodeset="/ses_form/sectionB/literacy" type="select1"/>
+            <bind nodeset="/ses_form/sectionB/educationLevel" type="int"/>
+            <bind nodeset="/ses_form/sectionB/husbandLiteracy" type="select1"/>
+            <bind nodeset="/ses_form/sectionB/occupation" type="select1"/>
+            <bind nodeset="/ses_form/sectionB/occupationPlus" relevant="selected ( /ses_form/sectionB/occupation , 'housewifePlus')" type="string"/>
+            <bind nodeset="/ses_form/sectionB/occupationOther" relevant="selected ( /ses_form/sectionB/occupation , 'otherOccupation')" type="string"/>
+            <bind nodeset="/ses_form/sectionB/additionalWorkLocation" relevant="selected ( /ses_form/sectionB/occupation , 'housewifePlus') or selected ( /ses_form/sectionB/occupation , 'otherOccupation')" type="select1"/>
+            <bind nodeset="/ses_form/sectionB/husbandOccupation" type="string"/>
+            <bind nodeset="/ses_form/sectionB/otherIncomeEarner" type="select1"/>
+            <bind nodeset="/ses_form/sectionB/otherIncomeEarnerOccupation" relevant="selected ( /ses_form/sectionB/otherIncomeEarner , 'yes')" type="string"/>
+            <bind nodeset="/ses_form/sectionB/principleOccupation" required="true()" type="select1"/>
+            <bind nodeset="/ses_form/sectionB/householdIncome" type="int"/>
+            <bind nodeset="/ses_form/sectionB/incomePer" type="select1"/>
+            <bind constraint=" /ses_form/sectionB/numberWeeksWorked &lt;5 and  /ses_form/sectionB/numberWeeksWorked &gt;0" jr:constraintMsg="Number of weeks must be between 1 and 4" nodeset="/ses_form/sectionB/numberWeeksWorked" relevant="selected ( /ses_form/sectionB/incomePer , 'week')" type="int"/>
+            <bind constraint=" /ses_form/sectionB/numberDaysWorked &gt;0 and  /ses_form/sectionB/numberDaysWorked &lt;32" jr:constraintMsg="Number of days must be between 1 and 31" nodeset="/ses_form/sectionB/numberDaysWorked" relevant="selected ( /ses_form/sectionB/incomePer , 'day')" type="int"/>
+            <bind calculate=" /ses_form/sectionB/numberWeeksWorked  *  /ses_form/sectionB/householdIncome " nodeset="/ses_form/sectionB/monthlyIncomeWeeks" relevant="selected ( /ses_form/sectionB/incomePer , 'week') and  /ses_form/sectionB/numberWeeksWorked &lt;5 and  /ses_form/sectionB/numberWeeksWorked &gt;0" type="string"/>
+            <bind calculate=" /ses_form/sectionB/numberDaysWorked  *  /ses_form/sectionB/householdIncome " nodeset="/ses_form/sectionB/monthlyIncomeDays" relevant="selected ( /ses_form/sectionB/incomePer , 'day') and  /ses_form/sectionB/numberDaysWorked &gt;0 and  /ses_form/sectionB/numberDaysWorked &lt;32" type="string"/>
+            <bind nodeset="/ses_form/sectionB/incomeNoteWeek" readonly="true()" relevant="selected ( /ses_form/sectionB/incomePer , 'week') and  /ses_form/sectionB/numberWeeksWorked &lt;5 and  /ses_form/sectionB/numberWeeksWorked &gt;0" type="string"/>
+            <bind nodeset="/ses_form/sectionB/incomeNoteDay" readonly="true()" relevant="selected ( /ses_form/sectionB/incomePer , 'day') and  /ses_form/sectionB/numberDaysWorked &gt;0 and  /ses_form/sectionB/numberDaysWorked &lt;32" type="string"/>
+            <bind nodeset="/ses_form/sectionC/houseLocation" type="select1"/>
+            <bind nodeset="/ses_form/sectionC/accommodation" type="select1"/>
+            <bind nodeset="/ses_form/sectionC/accommodationOther" relevant="selected ( /ses_form/sectionC/accommodation , 'otherAccommodation')" type="string"/>
+            <bind nodeset="/ses_form/sectionC/householdTelevision" type="select1"/>
+            <bind nodeset="/ses_form/sectionC/householdTransportation" type="select1"/>
+            <bind nodeset="/ses_form/sectionC/householdAlmirah" type="select1"/>
+            <bind nodeset="/ses_form/sectionC/householdSewing" type="select1"/>
+            <bind nodeset="/ses_form/sectionC/householdCookers" type="select1"/>
+            <bind nodeset="/ses_form/sectionC/householdFans" type="select1"/>
+            <bind nodeset="/ses_form/sectionC/householdEnergy" type="select1"/>
+            <bind calculate=" /ses_form/sectionB/youngHouseholdMembers  +  /ses_form/sectionB/principleOccupation  +  /ses_form/sectionC/householdTelevision  +  /ses_form/sectionC/householdTransportation  +  /ses_form/sectionC/householdAlmirah  +  /ses_form/sectionC/householdSewing  +  /ses_form/sectionC/householdCookers  +  /ses_form/sectionC/householdFans  +  /ses_form/sectionC/householdEnergy  + 4" nodeset="/ses_form/sectionC/ppi" type="string"/>
+            <bind nodeset="/ses_form/sectionC/ppiNote" readonly="true()" type="string"/>
+            <bind nodeset="/ses_form/sectionC/householdToilet" type="select1"/>
+            <bind nodeset="/ses_form/sectionC/toiletTnfo" relevant="selected ( /ses_form/sectionC/householdToilet , 'flush') or selected ( /ses_form/sectionC/householdToilet , 'pourFlush')" type="select1"/>
+            <bind nodeset="/ses_form/sectionD/pregnancyCare" type="select1"/>
+            <bind nodeset="/ses_form/sectionD/pregnancyCareLocations" relevant="selected ( /ses_form/sectionD/pregnancyCare , 'yes')" type="select"/>
+            <bind nodeset="/ses_form/sectionD/pregnancyCareOther" relevant="selected ( /ses_form/sectionD/pregnancyCareLocations , 'otherHealthFacilities')" type="string"/>
+            <bind nodeset="/ses_form/sectionD/gmp" type="select1"/>
+            <bind nodeset="/ses_form/sectionD/gmpLocations" relevant="selected ( /ses_form/sectionD/gmp , 'yes')" type="select"/>
+            <bind nodeset="/ses_form/sectionD/gmpOther" relevant="selected ( /ses_form/sectionD/gmpLocations , 'otherHealthFacilities')" type="string"/>
+            <bind nodeset="/ses_form/sectionD/food" type="select1"/>
+            <bind nodeset="/ses_form/sectionD/foodLocations" relevant="selected ( /ses_form/sectionD/food , 'yes')" type="select"/>
+            <bind nodeset="/ses_form/sectionD/foodOther" relevant="selected ( /ses_form/sectionD/foodLocations , 'otherHealthFacilities')" type="string"/>
+            <bind nodeset="/ses_form/sectionD/medicalAttention" type="select1"/>
+            <bind nodeset="/ses_form/sectionD/medicalAttentionLocations" relevant="selected ( /ses_form/sectionD/medicalAttention , 'yes')" type="select"/>
+            <bind nodeset="/ses_form/sectionD/medicalAttentionOther" relevant="selected ( /ses_form/sectionD/medicalAttentionLocations , 'otherHealthFacilities')" type="string"/>
+            <bind nodeset="/ses_form/sectionD/immunizations" type="select1"/>
+            <bind nodeset="/ses_form/sectionD/immunizationsLocations" relevant="selected ( /ses_form/sectionD/immunizations , 'yes')" type="select"/>
+            <bind nodeset="/ses_form/sectionD/immunizationsOther" relevant="selected ( /ses_form/sectionD/immunizationsLocations , 'otherHealthFacilities')" type="string"/>
+            <bind nodeset="/ses_form/sectionD/emergencyServices" type="select1"/>
+            <bind nodeset="/ses_form/sectionD/emergencyServicesLocations" relevant="selected ( /ses_form/sectionD/emergencyServices , 'yes')" type="select"/>
+            <bind nodeset="/ses_form/sectionD/emergencyServicesOther" relevant="selected ( /ses_form/sectionD/emergencyServicesLocations , 'otherHealthFacilities')" type="string"/>
+            <bind nodeset="/ses_form/sectionD/otherServices" type="select1"/>
+            <bind nodeset="/ses_form/sectionD/otherServicesLocations" relevant="selected ( /ses_form/sectionD/otherServices , 'yes')" type="select"/>
+            <bind nodeset="/ses_form/sectionD/otherServicesOther" relevant="selected ( /ses_form/sectionD/otherServicesLocations , 'otherHealthFacilities')" type="string"/>
+            <bind nodeset="/ses_form/sectionE/childCalcuttaKids/childId" required="true()" type="string"/>
+            <bind nodeset="/ses_form/sectionE/child/dateOfBirth" type="date"/>
+            <bind nodeset="/ses_form/sectionE/child/age" relevant=" /ses_form/sectionE/child/dateOfBirth =''" type="int"/>
+            <bind calculate="format-date(date( /ses_form/sectionA/date  - ( /ses_form/sectionE/child/age *365.25)), '%Y-%n-%e')" nodeset="/ses_form/sectionE/child/dateOfBirthCalculated" type="string"/>
+            <bind calculate="int (( /ses_form/sectionA/date - /ses_form/sectionE/child/dateOfBirth ) div 365.24)" nodeset="/ses_form/sectionE/child/ageYears" type="string"/>
+            <bind calculate="int (( /ses_form/sectionA/date - /ses_form/sectionE/child/dateOfBirth ) div 30.44)" nodeset="/ses_form/sectionE/child/ageMonths" type="string"/>
+            <bind calculate="( /ses_form/sectionE/child/ageMonths -( /ses_form/sectionE/child/ageYears  * 12))" nodeset="/ses_form/sectionE/child/remainderMonths" type="string"/>
+            <bind nodeset="/ses_form/sectionE/child/ageNote" readonly="true()" relevant=" /ses_form/sectionE/child/age =''" type="string"/>
+            <bind nodeset="/ses_form/sectionE/child/childGender" type="select1"/>
+            <bind nodeset="/ses_form/timeout" type="time"/>
+            <bind calculate="concat('uuid:', uuid())" nodeset="/ses_form/meta/instanceID" readonly="true()" type="string"/>
+            <bind calculate="'14ec3f01f97748338966771f7890f6f6'" nodeset="/ses_form/formhub/uuid" type="string"/>
         </model>
     </h:head>
     <h:body>
-        <input ref="/doctor_visit/date">
-            <label>Date of visit</label>
-        </input>
-        <select1 appearance="minimal" ref="/doctor_visit/doctor">
-            <label>Doctor's name</label>
-            <item>
-                <label>Dr. S Chowdhury</label>
-                <value>chowdhury</value>
-            </item>
-            <item>
-                <label>Dr. S Sen</label>
-                <value>sen</value>
-            </item>
-            <item>
-                <label>Dr. U.K. Roy</label>
-                <value>roy</value>
-            </item>
-        </select1>
-        <select1 appearance="minimal" ref="/doctor_visit/beneficiary">
-            <label>Beneficiary Type</label>
-            <item>
-                <label>Mother</label>
-                <value>mother</value>
-            </item>
-            <item>
-                <label>Child</label>
-                <value>child</value>
-            </item>
-            <item>
-                <label>Pregnant Woman</label>
-                <value>pregnantWoman</value>
-            </item>
-        </select1>
-        <select1 appearance="minimal" ref="/doctor_visit/visitReason">
-            <label>Reason for doctor visit</label>
-            <item>
-                <label>Regular ANC check up</label>
-                <value>ancDoctorVisit</value>
-            </item>
-            <item>
-                <label>Other</label>
-                <value>otherDoctorVisit</value>
-            </item>
-        </select1>
-        <input ref="/doctor_visit/weight">
-            <label>Weight (kg)</label>
-        </input>
-        <input ref="/doctor_visit/height">
-            <label>Height (cm)</label>
-        </input>
-        <input ref="/doctor_visit/temperature">
-            <label>Temperature (°F)</label>
-        </input>
-        <input ref="/doctor_visit/bloodPressure">
-            <label>Blood Pressure</label>
-        </input>
-        <input ref="/doctor_visit/fundalHeight">
-            <label>Fundal Height (cm)</label>
-        </input>
-        <input appearance="text-area" ref="/doctor_visit/chiefComplaint">
-            <label>Chief Complaint</label>
-        </input>
-        <input appearance="text-area" ref="/doctor_visit/assessment">
-            <label>Assessment</label>
-        </input>
-        <select ref="/doctor_visit/healthProblems">
-            <label>Health Problem/ Classification</label>
-            <item>
-                <label>Congenital / Developmental disorders</label>
-                <value>congenital</value>
-            </item>
-            <item>
-                <label>Dermatological</label>
-                <value>dermatological</value>
-            </item>
-            <item>
-                <label>Endocrinological disorder</label>
-                <value>endocrinological</value>
-            </item>
-            <item>
-                <label>ENT</label>
-                <value>ent</value>
-            </item>
-            <item>
-                <label>Fever of unknown origin/ fever with rash</label>
-                <value>fever</value>
-            </item>
-            <item>
-                <label>Gastrointestinal</label>
-                <value>gastrointestinal</value>
-            </item>
-            <item>
-                <label>General Trauma/burn injury</label>
-                <value>generalTrauma</value>
-            </item>
-            <item>
-                <label>Genitourinary/ Gynecological</label>
-                <value>genitourinary</value>
-            </item>
-            <item>
-                <label>Infectious disease</label>
-                <value>infectiousDisease</value>
-            </item>
-            <item>
-                <label>Neurological</label>
-                <value>neurological</value>
-            </item>
-            <item>
-                <label>Nutritional deficiency</label>
-                <value>nutritionalDeficiency</value>
-            </item>
-            <item>
-                <label>Ophthalmic infection/allergy</label>
-                <value>ophthalmic</value>
-            </item>
-            <item>
-                <label>Respiratory</label>
-                <value>respiratory</value>
-            </item>
-            <item>
-                <label>Pregnancy, childbirth, and the puerperium</label>
-                <value>childBirth</value>
-            </item>
-            <item>
-                <label>Other</label>
-                <value>other</value>
-            </item>
-        </select>
-        <input appearance="text-area" ref="/doctor_visit/healthProblemsOther">
-            <label>Please specify other:</label>
-        </input>
-        <input appearance="text-area" ref="/doctor_visit/diagnosis">
-            <label>Diagnosis</label>
-        </input>
-        <group ref="/doctor_visit/medications">
-            <label>Medications</label>
-            <repeat nodeset="/doctor_visit/medications">
-                <input ref="/doctor_visit/medications/medicationName">
-                    <label>Name</label>
-                </input>
-                <input ref="/doctor_visit/medications/dose">
-                    <label>Dose</label>
-                </input>
-                <select1 appearance="minimal" ref="/doctor_visit/medications/unit">
-                    <label>Dose unit</label>
-                    <item>
-                        <label>mg</label>
-                        <value>mg</value>
-                    </item>
-                    <item>
-                        <label>ml</label>
-                        <value>ml</value>
-                    </item>
-                </select1>
-                <input ref="/doctor_visit/medications/duration">
-                    <label>Duration</label>
-                </input>
-                <input appearance="text-area" ref="/doctor_visit/medications/instructions">
-                    <label>Administration Instructions</label>
-                </input>
-            </repeat>
+        <group ref="/ses_form/sectionA">
+            <label>Basic Information</label>
+            <select1 appearance="minimal" ref="/ses_form/sectionA/healthWorker">
+                <label>Health Worker's name</label>
+                <item>
+                    <label>Laxmi G</label>
+                    <value>laxmiG</value>
+                </item>
+                <item>
+                    <label>Zeenat N</label>
+                    <value>zeenatN</value>
+                </item>
+                <item>
+                    <label>Mita C</label>
+                    <value>mitaD</value>
+                </item>
+                <item>
+                    <label>Munni D</label>
+                    <value>munniD</value>
+                </item>
+                <item>
+                    <label>Sima D</label>
+                    <value>simaD</value>
+                </item>
+                <item>
+                    <label>Sujata S</label>
+                    <value>sujataS</value>
+                </item>
+                <item>
+                    <label>Barnali B</label>
+                    <value>barnaliB</value>
+                </item>
+                <item>
+                    <label>Kaberi M</label>
+                    <value>kaberiM</value>
+                </item>
+                <item>
+                    <label>Malti G</label>
+                    <value>maltiG</value>
+                </item>
+            </select1>
+            <input ref="/ses_form/sectionA/date">
+                <label>Date</label>
+            </input>
+            <input ref="/ses_form/sectionA/time">
+                <label>Time In</label>
+            </input>
         </group>
-        <group ref="/doctor_visit/tests">
-            <label>Tests</label>
-            <repeat nodeset="/doctor_visit/tests">
-                <select1 appearance="minimal" ref="/doctor_visit/tests/testRequired">
-                    <label>Test Required</label>
-                    <item>
-                        <label>Yes</label>
-                        <value>yes</value>
-                    </item>
-                    <item>
-                        <label>No</label>
-                        <value>no</value>
-                    </item>
-                </select1>
-                <input appearance="text-area" ref="/doctor_visit/tests/testRequiredName">
-                    <label>Name of test:</label>
-                </input>
-            </repeat>
+        <group ref="/ses_form/sectionB">
+            <label>Household Population</label>
+            <select1 appearance="minimal" ref="/ses_form/sectionB/maritalStatus">
+                <label>Marital status</label>
+                <item>
+                    <label>Married</label>
+                    <value>married</value>
+                </item>
+                <item>
+                    <label>Divorced</label>
+                    <value>divorced</value>
+                </item>
+                <item>
+                    <label>Widowed</label>
+                    <value>widowed</value>
+                </item>
+                <item>
+                    <label>Remarried</label>
+                    <value>remarried</value>
+                </item>
+                <item>
+                    <label>Unmarried</label>
+                    <value>unmarried</value>
+                </item>
+                <item>
+                    <label>Seperated</label>
+                    <value>seperated</value>
+                </item>
+                <item>
+                    <label>Other</label>
+                    <value>otherMaritalStatus</value>
+                </item>
+            </select1>
+            <input ref="/ses_form/sectionB/maritalStatusOther">
+                <label>Please specify other:</label>
+            </input>
+            <input ref="/ses_form/sectionB/ageFirstMarriage">
+                <label>Age at first marriage (years)</label>
+            </input>
+            <select1 appearance="minimal" ref="/ses_form/sectionB/religion">
+                <label>Religion</label>
+                <hint>Please ask and do not assume based on appearnce</hint>
+                <item>
+                    <label>Hindu</label>
+                    <value>hindu</value>
+                </item>
+                <item>
+                    <label>Muslim</label>
+                    <value>muslim</value>
+                </item>
+                <item>
+                    <label>Christian</label>
+                    <value>christian</value>
+                </item>
+                <item>
+                    <label>Sikh</label>
+                    <value>sikh</value>
+                </item>
+                <item>
+                    <label>Other</label>
+                    <value>otherReligion</value>
+                </item>
+            </select1>
+            <input ref="/ses_form/sectionB/religionOther">
+                <label>Please specify other:</label>
+            </input>
+            <select1 appearance="minimal" ref="/ses_form/sectionB/bplCard">
+                <label>Do you have a BPL card?</label>
+                <item>
+                    <label>Yes</label>
+                    <value>yes</value>
+                </item>
+                <item>
+                    <label>No</label>
+                    <value>no</value>
+                </item>
+            </select1>
+            <select1 appearance="minimal" ref="/ses_form/sectionB/healthInsurance">
+                <label>Do you have RSBY?</label>
+                <item>
+                    <label>Yes</label>
+                    <value>yes</value>
+                </item>
+                <item>
+                    <label>No</label>
+                    <value>no</value>
+                </item>
+            </select1>
+            <input ref="/ses_form/sectionB/householdMembers">
+                <label>Number of household members (eating together)</label>
+            </input>
+            <select1 appearance="minimal" ref="/ses_form/sectionB/youngHouseholdMembers">
+                <label>Number of people aged 0-17 in the household</label>
+                <item>
+                    <label>None</label>
+                    <value>27</value>
+                </item>
+                <item>
+                    <label>One</label>
+                    <value>20</value>
+                </item>
+                <item>
+                    <label>Two</label>
+                    <value>13</value>
+                </item>
+                <item>
+                    <label>Three</label>
+                    <value>8</value>
+                </item>
+                <item>
+                    <label>Four</label>
+                    <value>4</value>
+                </item>
+                <item>
+                    <label>Five or more</label>
+                    <value>0</value>
+                </item>
+            </select1>
+            <select1 appearance="minimal" ref="/ses_form/sectionB/migrants">
+                <label>Have you migrated to Kolkata from another place?</label>
+                <item>
+                    <label>Yes</label>
+                    <value>yes</value>
+                </item>
+                <item>
+                    <label>No</label>
+                    <value>no</value>
+                </item>
+            </select1>
+            <select1 appearance="minimal" ref="/ses_form/sectionB/migratedFrom">
+                <label>Where did you migrate from?</label>
+                <item>
+                    <label>UP</label>
+                    <value>up</value>
+                </item>
+                <item>
+                    <label>Bihar</label>
+                    <value>bihar</value>
+                </item>
+                <item>
+                    <label>Jharkhand</label>
+                    <value>jharkhand</value>
+                </item>
+                <item>
+                    <label>South India</label>
+                    <value>southIndia</value>
+                </item>
+                <item>
+                    <label>Odisha</label>
+                    <value>odisha</value>
+                </item>
+                <item>
+                    <label>Other</label>
+                    <value>otherMigratedFrom</value>
+                </item>
+            </select1>
+            <input ref="/ses_form/sectionB/migratedFromOther">
+                <label>Please specify other:</label>
+            </input>
+            <input ref="/ses_form/sectionB/literacyTest">
+                <label>Please give the woman the laminated reading card and ask her to read the passage in the language of her choice.</label>
+            </input>
+            <select1 appearance="minimal" ref="/ses_form/sectionB/literacy">
+                <label>Could the woman read the passage?</label>
+                <item>
+                    <label>Yes</label>
+                    <value>yesLiteracy</value>
+                </item>
+                <item>
+                    <label>No</label>
+                    <value>noLiteracy</value>
+                </item>
+                <item>
+                    <label>Refused to participate</label>
+                    <value>refusedLiteracy</value>
+                </item>
+            </select1>
+            <input ref="/ses_form/sectionB/educationLevel">
+                <label>What was the last class you completed?</label>
+            </input>
+            <select1 appearance="minimal" ref="/ses_form/sectionB/husbandLiteracy">
+                <label>Can your husband read?</label>
+                <item>
+                    <label>Yes</label>
+                    <value>yes</value>
+                </item>
+                <item>
+                    <label>No</label>
+                    <value>no</value>
+                </item>
+            </select1>
+            <select1 appearance="minimal" ref="/ses_form/sectionB/occupation">
+                <label>What is your occupation?</label>
+                <hint>(The mother's occupation)</hint>
+                <item>
+                    <label>Housewife (only)</label>
+                    <value>housewife</value>
+                </item>
+                <item>
+                    <label>Housewife plus additional work</label>
+                    <value>housewifePlus</value>
+                </item>
+                <item>
+                    <label>Other</label>
+                    <value>otherOccupation</value>
+                </item>
+            </select1>
+            <input ref="/ses_form/sectionB/occupationPlus">
+                <label>What is the additional work you do?</label>
+            </input>
+            <input appearance="minimal" ref="/ses_form/sectionB/occupationOther">
+                <label>Please specify other:</label>
+            </input>
+            <select1 appearance="minimal" ref="/ses_form/sectionB/additionalWorkLocation">
+                <label>Is this work done at home or outside of the home?</label>
+                <item>
+                    <label>At home</label>
+                    <value>atHome</value>
+                </item>
+                <item>
+                    <label>Outside of the home</label>
+                    <value>outsideHome</value>
+                </item>
+            </select1>
+            <input ref="/ses_form/sectionB/husbandOccupation">
+                <label>What is your husband's occupation?</label>
+                <hint>Write NA if not applicable</hint>
+            </input>
+            <select1 appearance="minimal" ref="/ses_form/sectionB/otherIncomeEarner">
+                <label>Is there any other income earner in the household?</label>
+                <item>
+                    <label>Yes</label>
+                    <value>yes</value>
+                </item>
+                <item>
+                    <label>No</label>
+                    <value>no</value>
+                </item>
+            </select1>
+            <input ref="/ses_form/sectionB/otherIncomeEarnerOccupation">
+                <label>What is his/her occupation?</label>
+            </input>
+            <select1 appearance="minimal" ref="/ses_form/sectionB/principleOccupation">
+                <label>Principle occupation of the household</label>
+                <hint>Out of the three income earners, identify who is the principle occupation holder, then tick</hint>
+                <item>
+                    <label>Laborer</label>
+                    <value>0</value>
+                </item>
+                <item>
+                    <label>Professional</label>
+                    <value>14</value>
+                </item>
+                <item>
+                    <label>Other</label>
+                    <value>8</value>
+                </item>
+            </select1>
+            <input ref="/ses_form/sectionB/householdIncome">
+                <label>What is the households income? (rupees)</label>
+            </input>
+            <select1 appearance="minimal" ref="/ses_form/sectionB/incomePer">
+                <label>Rupees per</label>
+                <item>
+                    <label>Month</label>
+                    <value>month</value>
+                </item>
+                <item>
+                    <label>Week</label>
+                    <value>week</value>
+                </item>
+                <item>
+                    <label>Day</label>
+                    <value>day</value>
+                </item>
+            </select1>
+            <input ref="/ses_form/sectionB/numberWeeksWorked">
+                <label>Number of weeks worked in a given month</label>
+            </input>
+            <input ref="/ses_form/sectionB/numberDaysWorked">
+                <label>Number of days worked in a given month</label>
+            </input>
+            <input ref="/ses_form/sectionB/incomeNoteWeek">
+                <label>Monthly income is <output value=" /ses_form/sectionB/monthlyIncomeWeeks "/> rupees</label>
+            </input>
+            <input ref="/ses_form/sectionB/incomeNoteDay">
+                <label>Monthly income is <output value=" /ses_form/sectionB/monthlyIncomeDays "/> rupees</label>
+            </input>
         </group>
-        <select1 appearance="minimal" ref="/doctor_visit/hospitalVisit">
-            <label>Patient was adviced to visit the hospital</label>
-            <item>
-                <label>Yes</label>
-                <value>yes</value>
-            </item>
-            <item>
-                <label>No</label>
-                <value>no</value>
-            </item>
-        </select1>
-        <input ref="/doctor_visit/followUp">
-            <label>Date of follow up visit</label>
-        </input>
-        <input appearance="text-area" ref="/doctor_visit/clinicalNote">
-            <label>Clinical note/ other advice</label>
+        <group ref="/ses_form/sectionC">
+            <label>Housing Characteristics/ Consumer Durables</label>
+            <select1 appearance="minimal" ref="/ses_form/sectionC/houseLocation">
+                <label>Location of House</label>
+                <item>
+                    <label>Ground level, Talibari</label>
+                    <value>groundLevelTalibari</value>
+                </item>
+                <item>
+                    <label>Ground level, flat</label>
+                    <value>groundLevelFlat</value>
+                </item>
+                <item>
+                    <label>Above ground level (flat)</label>
+                    <value>aboveGroundLevel</value>
+                </item>
+            </select1>
+            <select1 appearance="minimal" ref="/ses_form/sectionC/accommodation">
+                <label>Accommodation</label>
+                <item>
+                    <label>Owner</label>
+                    <value>owner</value>
+                </item>
+                <item>
+                    <label>Tenant</label>
+                    <value>tenant</value>
+                </item>
+                <item>
+                    <label>Other</label>
+                    <value>otherAccommodation</value>
+                </item>
+            </select1>
+            <input ref="/ses_form/sectionC/accommodationOther">
+                <label>Please specify other:</label>
+            </input>
+            <select1 appearance="minimal" ref="/ses_form/sectionC/householdTelevision">
+                <label>Does the HH own a television?</label>
+                <item>
+                    <label>Yes</label>
+                    <value>6</value>
+                </item>
+                <item>
+                    <label>No</label>
+                    <value>0</value>
+                </item>
+            </select1>
+            <select1 appearance="minimal" ref="/ses_form/sectionC/householdTransportation">
+                <label>Does the HH own a bicylcle, scooter, or motor cycle?</label>
+                <item>
+                    <label>Yes</label>
+                    <value>5</value>
+                </item>
+                <item>
+                    <label>No</label>
+                    <value>0</value>
+                </item>
+            </select1>
+            <select1 appearance="minimal" ref="/ses_form/sectionC/householdAlmirah">
+                <label>Does the HH own an almirah/ dressing table?</label>
+                <item>
+                    <label>Yes</label>
+                    <value>3</value>
+                </item>
+                <item>
+                    <label>No</label>
+                    <value>0</value>
+                </item>
+            </select1>
+            <select1 appearance="minimal" ref="/ses_form/sectionC/householdSewing">
+                <label>Does the HH own a sewing machine?</label>
+                <item>
+                    <label>Yes</label>
+                    <value>6</value>
+                </item>
+                <item>
+                    <label>No</label>
+                    <value>0</value>
+                </item>
+            </select1>
+            <select1 appearance="minimal" ref="/ses_form/sectionC/householdCookers">
+                <label>How many pressure cookers or pressure pans does the HH own?</label>
+                <item>
+                    <label>None</label>
+                    <value>0</value>
+                </item>
+                <item>
+                    <label>One</label>
+                    <value>6</value>
+                </item>
+                <item>
+                    <label>Two or more</label>
+                    <value>9</value>
+                </item>
+            </select1>
+            <select1 appearance="minimal" ref="/ses_form/sectionC/householdFans">
+                <label>How many electric fans does the HH own?</label>
+                <item>
+                    <label>None</label>
+                    <value>0</value>
+                </item>
+                <item>
+                    <label>One</label>
+                    <value>5</value>
+                </item>
+                <item>
+                    <label>Two or more</label>
+                    <value>9</value>
+                </item>
+            </select1>
+            <select1 appearance="minimal" ref="/ses_form/sectionC/householdEnergy">
+                <label>What is the HH's primary source of energy for cooking?</label>
+                <item>
+                    <label>Firewood</label>
+                    <value>0</value>
+                </item>
+                <item>
+                    <label>LPG</label>
+                    <value>17</value>
+                </item>
+                <item>
+                    <label>Electric</label>
+                    <value>17</value>
+                </item>
+                <item>
+                    <label>Other</label>
+                    <value>5</value>
+                </item>
+            </select1>
+            <input ref="/ses_form/sectionC/ppiNote">
+                <label>The families PPI total score is: <output value=" /ses_form/sectionC/ppi "/></label></input>
+            <select1 appearance="minimal" ref="/ses_form/sectionC/householdToilet">
+                <label>What type of toilet facility do you usually use for defeication?</label>
+                <item>
+                    <label>Flush</label>
+                    <value>flush</value>
+                </item>
+                <item>
+                    <label>Pour flush</label>
+                    <value>pourFlush</value>
+                </item>
+                <item>
+                    <label>Open</label>
+                    <value>open</value>
+                </item>
+            </select1>
+            <select1 appearance="minimal" ref="/ses_form/sectionC/toiletTnfo">
+                <label>Is the toilet private or shared with other households?</label>
+                <item>
+                    <label>Private</label>
+                    <value>private</value>
+                </item>
+                <item>
+                    <label>Shared</label>
+                    <value>shared</value>
+                </item>
+            </select1>
+        </group>
+        <group ref="/ses_form/sectionD">
+            <label>Health Seeking Behaviors</label>
+            <select1 appearance="minimal" ref="/ses_form/sectionD/pregnancyCare">
+                <label>When you were pregnant, did you receive pregnancy care?</label>
+                <item>
+                    <label>Yes</label>
+                    <value>yes</value>
+                </item>
+                <item>
+                    <label>No</label>
+                    <value>no</value>
+                </item>
+            </select1>
+            <select ref="/ses_form/sectionD/pregnancyCareLocations">
+                <label>Where did you receive this care?</label>
+                <item>
+                    <label>ICDS</label>
+                    <value>icds</value>
+                </item>
+                <item>
+                    <label>Ward Health Center</label>
+                    <value>wardHealth</value>
+                </item>
+                <item>
+                    <label>District Hospital</label>
+                    <value>districtHospital</value>
+                </item>
+                <item>
+                    <label>Jaiswal Hospital</label>
+                    <value>jaiswalHospital</value>
+                </item>
+                <item>
+                    <label>Satyabala Hospital</label>
+                    <value>satyabalaHospital</value>
+                </item>
+                <item>
+                    <label>Private doctor or nusing home</label>
+                    <value>privateDoctor</value>
+                </item>
+                <item>
+                    <label>NGO's</label>
+                    <value>ngo</value>
+                </item>
+                <item>
+                    <label>Calcutta Kids</label>
+                    <value>calcuttaKids</value>
+                </item>
+                <item>
+                    <label>Other</label>
+                    <value>otherHealthFacilities</value>
+                </item>
+            </select>
+            <input ref="/ses_form/sectionD/pregnancyCareOther">
+                <label>Please specify other:</label>
+            </input>
+            <select1 appearance="minimal" ref="/ses_form/sectionD/gmp">
+                <label>Does your child get weighed each month?</label>
+                <item>
+                    <label>Yes</label>
+                    <value>yes</value>
+                </item>
+                <item>
+                    <label>No</label>
+                    <value>no</value>
+                </item>
+            </select1>
+            <select ref="/ses_form/sectionD/gmpLocations">
+                <label>Where?</label>
+                <item>
+                    <label>ICDS</label>
+                    <value>icds</value>
+                </item>
+                <item>
+                    <label>Ward Health Center</label>
+                    <value>wardHealth</value>
+                </item>
+                <item>
+                    <label>District Hospital</label>
+                    <value>districtHospital</value>
+                </item>
+                <item>
+                    <label>Jaiswal Hospital</label>
+                    <value>jaiswalHospital</value>
+                </item>
+                <item>
+                    <label>Satyabala Hospital</label>
+                    <value>satyabalaHospital</value>
+                </item>
+                <item>
+                    <label>Private doctor or nusing home</label>
+                    <value>privateDoctor</value>
+                </item>
+                <item>
+                    <label>NGO's</label>
+                    <value>ngo</value>
+                </item>
+                <item>
+                    <label>Calcutta Kids</label>
+                    <value>calcuttaKids</value>
+                </item>
+                <item>
+                    <label>Other</label>
+                    <value>otherHealthFacilities</value>
+                </item>
+            </select>
+            <input ref="/ses_form/sectionD/gmpOther">
+                <label>Please specify other:</label>
+            </input>
+            <select1 appearance="minimal" ref="/ses_form/sectionD/food">
+                <label>Do you get extra food for your child?</label>
+                <item>
+                    <label>Yes</label>
+                    <value>yes</value>
+                </item>
+                <item>
+                    <label>No</label>
+                    <value>no</value>
+                </item>
+            </select1>
+            <select ref="/ses_form/sectionD/foodLocations">
+                <label>Where?</label>
+                <item>
+                    <label>ICDS</label>
+                    <value>icds</value>
+                </item>
+                <item>
+                    <label>Ward Health Center</label>
+                    <value>wardHealth</value>
+                </item>
+                <item>
+                    <label>District Hospital</label>
+                    <value>districtHospital</value>
+                </item>
+                <item>
+                    <label>Jaiswal Hospital</label>
+                    <value>jaiswalHospital</value>
+                </item>
+                <item>
+                    <label>Satyabala Hospital</label>
+                    <value>satyabalaHospital</value>
+                </item>
+                <item>
+                    <label>Private doctor or nusing home</label>
+                    <value>privateDoctor</value>
+                </item>
+                <item>
+                    <label>NGO's</label>
+                    <value>ngo</value>
+                </item>
+                <item>
+                    <label>Calcutta Kids</label>
+                    <value>calcuttaKids</value>
+                </item>
+                <item>
+                    <label>Other</label>
+                    <value>otherHealthFacilities</value>
+                </item>
+            </select>
+            <input ref="/ses_form/sectionD/foodOther">
+                <label>Please specify other:</label>
+            </input>
+            <select1 appearance="minimal" ref="/ses_form/sectionD/medicalAttention">
+                <label>Do you seek medical attention when you or your child are ill or hurt?</label>
+                <item>
+                    <label>Yes</label>
+                    <value>yes</value>
+                </item>
+                <item>
+                    <label>No</label>
+                    <value>no</value>
+                </item>
+            </select1>
+            <select ref="/ses_form/sectionD/medicalAttentionLocations">
+                <label>Where?</label>
+                <item>
+                    <label>ICDS</label>
+                    <value>icds</value>
+                </item>
+                <item>
+                    <label>Ward Health Center</label>
+                    <value>wardHealth</value>
+                </item>
+                <item>
+                    <label>District Hospital</label>
+                    <value>districtHospital</value>
+                </item>
+                <item>
+                    <label>Jaiswal Hospital</label>
+                    <value>jaiswalHospital</value>
+                </item>
+                <item>
+                    <label>Satyabala Hospital</label>
+                    <value>satyabalaHospital</value>
+                </item>
+                <item>
+                    <label>Private doctor or nusing home</label>
+                    <value>privateDoctor</value>
+                </item>
+                <item>
+                    <label>NGO's</label>
+                    <value>ngo</value>
+                </item>
+                <item>
+                    <label>Calcutta Kids</label>
+                    <value>calcuttaKids</value>
+                </item>
+                <item>
+                    <label>Other</label>
+                    <value>otherHealthFacilities</value>
+                </item>
+            </select>
+            <input ref="/ses_form/sectionD/medicalAttentionOther">
+                <label>Please specify other:</label>
+            </input>
+            <select1 appearance="minimal" ref="/ses_form/sectionD/immunizations">
+                <label>Has your child received immunizations?</label>
+                <item>
+                    <label>Yes</label>
+                    <value>yes</value>
+                </item>
+                <item>
+                    <label>No</label>
+                    <value>no</value>
+                </item>
+            </select1>
+            <select ref="/ses_form/sectionD/immunizationsLocations">
+                <label>Where was your child immunized?</label>
+                <item>
+                    <label>ICDS</label>
+                    <value>icds</value>
+                </item>
+                <item>
+                    <label>Ward Health Center</label>
+                    <value>wardHealth</value>
+                </item>
+                <item>
+                    <label>District Hospital</label>
+                    <value>districtHospital</value>
+                </item>
+                <item>
+                    <label>Jaiswal Hospital</label>
+                    <value>jaiswalHospital</value>
+                </item>
+                <item>
+                    <label>Satyabala Hospital</label>
+                    <value>satyabalaHospital</value>
+                </item>
+                <item>
+                    <label>Private doctor or nusing home</label>
+                    <value>privateDoctor</value>
+                </item>
+                <item>
+                    <label>NGO's</label>
+                    <value>ngo</value>
+                </item>
+                <item>
+                    <label>Calcutta Kids</label>
+                    <value>calcuttaKids</value>
+                </item>
+                <item>
+                    <label>Other</label>
+                    <value>otherHealthFacilities</value>
+                </item>
+            </select>
+            <input ref="/ses_form/sectionD/immunizationsOther">
+                <label>Please specify other:</label>
+            </input>
+            <select1 appearance="minimal" ref="/ses_form/sectionD/emergencyServices">
+                <label>Have you needed to use emergency services for yourself or your child?</label>
+                <item>
+                    <label>Yes</label>
+                    <value>yes</value>
+                </item>
+                <item>
+                    <label>No</label>
+                    <value>no</value>
+                </item>
+            </select1>
+            <select ref="/ses_form/sectionD/emergencyServicesLocations">
+                <label>Where did you use emergency services?</label>
+                <item>
+                    <label>ICDS</label>
+                    <value>icds</value>
+                </item>
+                <item>
+                    <label>Ward Health Center</label>
+                    <value>wardHealth</value>
+                </item>
+                <item>
+                    <label>District Hospital</label>
+                    <value>districtHospital</value>
+                </item>
+                <item>
+                    <label>Jaiswal Hospital</label>
+                    <value>jaiswalHospital</value>
+                </item>
+                <item>
+                    <label>Satyabala Hospital</label>
+                    <value>satyabalaHospital</value>
+                </item>
+                <item>
+                    <label>Private doctor or nusing home</label>
+                    <value>privateDoctor</value>
+                </item>
+                <item>
+                    <label>NGO's</label>
+                    <value>ngo</value>
+                </item>
+                <item>
+                    <label>Calcutta Kids</label>
+                    <value>calcuttaKids</value>
+                </item>
+                <item>
+                    <label>Other</label>
+                    <value>otherHealthFacilities</value>
+                </item>
+            </select>
+            <input ref="/ses_form/sectionD/emergencyServicesOther">
+                <label>Please specify other:</label>
+            </input>
+            <select1 appearance="minimal" ref="/ses_form/sectionD/otherServices">
+                <label>Have you sought medical attention for any other reasons?</label>
+                <item>
+                    <label>Yes</label>
+                    <value>yes</value>
+                </item>
+                <item>
+                    <label>No</label>
+                    <value>no</value>
+                </item>
+            </select1>
+            <select ref="/ses_form/sectionD/otherServicesLocations">
+                <label>Where did you go for these medical services?</label>
+                <item>
+                    <label>ICDS</label>
+                    <value>icds</value>
+                </item>
+                <item>
+                    <label>Ward Health Center</label>
+                    <value>wardHealth</value>
+                </item>
+                <item>
+                    <label>District Hospital</label>
+                    <value>districtHospital</value>
+                </item>
+                <item>
+                    <label>Jaiswal Hospital</label>
+                    <value>jaiswalHospital</value>
+                </item>
+                <item>
+                    <label>Satyabala Hospital</label>
+                    <value>satyabalaHospital</value>
+                </item>
+                <item>
+                    <label>Private doctor or nusing home</label>
+                    <value>privateDoctor</value>
+                </item>
+                <item>
+                    <label>NGO's</label>
+                    <value>ngo</value>
+                </item>
+                <item>
+                    <label>Calcutta Kids</label>
+                    <value>calcuttaKids</value>
+                </item>
+                <item>
+                    <label>Other</label>
+                    <value>otherHealthFacilities</value>
+                </item>
+            </select>
+            <input ref="/ses_form/sectionD/otherServicesOther">
+                <label>Please specify other:</label>
+            </input>
+        </group>
+        <group ref="/ses_form/sectionE">
+            <label>Living Children</label>
+            <group ref="/ses_form/sectionE/childCalcuttaKids">
+                <label>Please enter the Child ID for all children enrolled in Calcutta Kids</label>
+                <repeat nodeset="/ses_form/sectionE/childCalcuttaKids">
+                    <input ref="/ses_form/sectionE/childCalcuttaKids/childId">
+                        <label>Child ID</label>
+                    </input>
+                </repeat>
+            </group>
+            <group ref="/ses_form/sectionE/child">
+                <label>Enter infromation for non - CK children (oldest first)</label>
+                <repeat nodeset="/ses_form/sectionE/child">
+                    <input ref="/ses_form/sectionE/child/dateOfBirth">
+                        <label>Child's date of birth</label>
+                    </input>
+                    <input ref="/ses_form/sectionE/child/age">
+                        <label>Child's age (years)</label>
+                    </input>
+                    <input ref="/ses_form/sectionE/child/ageNote">
+                        <label>Child is <output value=" /ses_form/sectionE/child/ageYears "/> years and <output value=" /ses_form/sectionE/child/remainderMonths "/> months old</label>
+                    </input>
+                    <select1 ref="/ses_form/sectionE/child/childGender">
+                        <label>Enter the gender of this child</label>
+                        <item>
+                            <label>Male</label>
+                            <value>male</value>
+                        </item>
+                        <item>
+                            <label>Female</label>
+                            <value>female</value>
+                        </item>
+                    </select1>
+                </repeat>
+            </group>
+        </group>
+        <input ref="/ses_form/timeout">
+            <label>Time Out</label>
         </input>
     </h:body>
 </h:html>

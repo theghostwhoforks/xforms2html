@@ -7,11 +7,15 @@
         >
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes" version="1.0" encoding="UTF-8"/>
 
+    <xsl:variable name="formName">
+        <xsl:value-of select="name(model/*:instance/node()[2])"/>
+    </xsl:variable>
+
     <xsl:template match="/">
         <form>
             <xsl:apply-templates select="model/*:instance/node()"/>
             <xsl:apply-templates select="model/*:instance/node()/node()[not(@template) and not(ancestor::*[@template])]"/>
-            <xsl:apply-templates select="model/*:instance/node()/node()[@template]"/>
+            <xsl:apply-templates select="//node()[@template]"/>
         </form>
     </xsl:template>
 
@@ -28,7 +32,8 @@
         </xsl:call-template>
     </xsl:template>
 
-    <xsl:template match="model/*:instance/node()/node()[@template]">
+    <!--<xsl:template match="model/*:instance/node()/node()[@template]">-->
+    <xsl:template match="*[@template]">
         <xsl:call-template name="copy-repeat-model">
             <xsl:with-param name="model" select="current()"/>
         </xsl:call-template>
@@ -65,6 +70,15 @@
                         </xsl:attribute>
                     </xsl:if>
                 </xsl:element>
+
+                <xsl:if test="$model/*">
+                    <xsl:for-each select="$model/node()">
+                        <xsl:call-template name="copy-model">
+                            <xsl:with-param name="model" select="."/>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
+
             </xsl:if>
         </xsl:if>
     </xsl:template>
@@ -79,7 +93,7 @@
                         <xsl:value-of select="local-name($model)"/>
                     </xsl:attribute>
                     <xsl:attribute name="bind_type">
-                        <xsl:value-of select="local-name(..)"/>
+                        <xsl:copy-of select="$formName"/>
                     </xsl:attribute>
                     <xsl:attribute name="default_bind_path">
                         <xsl:call-template name="genPath"/>
