@@ -50,4 +50,11 @@ inside Enketo Smart Paper.
 
     <xsl:template match="comment()"/>
 
+    <!-- Well, better this than a regex string replace. -->
+    <xsl:template match="@jr:template">
+        <xsl:attribute name="template">
+            <xsl:value-of select="."/>
+        </xsl:attribute>
+    </xsl:template>
+
 </xsl:stylesheet>
