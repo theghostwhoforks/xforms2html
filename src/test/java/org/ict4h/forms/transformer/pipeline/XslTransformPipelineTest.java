@@ -13,10 +13,10 @@ public class XslTransformPipelineTest {
 
     @Test
     public void shouldEnsureXFormToJavaRosaXSLIsTheFirstElementInThePipelineStack(){
-        final Stack<File> stack = XslTransformPipelineFactory.pipelineForXFormToHtml5().get();
+        final Stack<File> stack = XslTransformPipelineFactory.pipelineForOpenRosaToFormDefinitionJson().get();
         assertEquals(2, stack.size());
-        assertEquals(Constants.JAVA_ROSA_TO_HTML5_XSL,stack.pop().getName());
-        assertEquals(Constants.XFORM_TO_JAVA_ROSA_XSL,stack.pop().getName());
+        assertEquals(Constants.MODEL_TO_JSON_XSL,stack.pop().getName());
+        assertEquals(Constants.ENKETO_RESULT_TO_MODEL_XSL,stack.pop().getName());
     }
 
     @Test

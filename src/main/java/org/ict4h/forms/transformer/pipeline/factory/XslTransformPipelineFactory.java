@@ -17,10 +17,6 @@ public class XslTransformPipelineFactory {
         return new XslTransformPipelineFactory().getOpenRosaToHtml5();
     }
 
-    public static XslTransformPipeline pipelineForXFormToHtml5(){
-        return new XslTransformPipelineFactory().getXFormToHtml5Pipeline();
-    }
-
     public static XslTransformPipeline pipelineForOpenRosaToModelXml(){
         return new XslTransformPipelineFactory().getOpenRosaToModelXml();
     }
@@ -41,11 +37,6 @@ public class XslTransformPipelineFactory {
         return new XslTransformPipelineImpl()
                 .push(getFile(ENKETO_RESULT_TO_MODEL_XSL))
                 .push(getFile(MODEL_TO_JSON_XSL));
-    }
-
-    private XslTransformPipeline getXFormToHtml5Pipeline(){
-        return new XslTransformPipelineImpl().push(getFile(XFORM_TO_JAVA_ROSA_XSL))
-                                             .push(getFile(JAVA_ROSA_TO_HTML5_XSL));
     }
 
     private File getFile(String fileName){

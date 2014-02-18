@@ -6,6 +6,7 @@
         xmlns:forms="http://www.w3.org/2002/xforms"
         >
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes" version="1.0" encoding="UTF-8"/>
+
     <xsl:template match="/">
         <form>
             <xsl:apply-templates select="model/*:instance/node()"/>
@@ -78,7 +79,7 @@
                         <xsl:value-of select="local-name($model)"/>
                     </xsl:attribute>
                     <xsl:attribute name="bind_type">
-                        <xsl:text>child</xsl:text>
+                        <xsl:value-of select="local-name(..)"/>
                     </xsl:attribute>
                     <xsl:attribute name="default_bind_path">
                         <xsl:call-template name="genPath"/>
