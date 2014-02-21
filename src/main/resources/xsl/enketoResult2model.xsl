@@ -14,8 +14,8 @@
     <xsl:template match="/">
         <form>
             <xsl:apply-templates select="model/*:instance/node()"/>
-            <xsl:apply-templates select="model/*:instance/node()/node()[not(@template) and not(ancestor::*[@template])]"/>
-            <xsl:apply-templates select="//node()[@template]"/>
+            <xsl:apply-templates select="model/*:instance/node()//node()[not(@template) and not(ancestor::*[@template])]"/>
+            <xsl:apply-templates select="model/*:instance/node()//node()[@template]"/>
         </form>
     </xsl:template>
 
@@ -26,14 +26,13 @@
     </xsl:template>
 
 
-    <xsl:template match="model/*:instance/node()/node()[not(@template) and not(ancestor::*[@template])]">
+    <xsl:template match="model/*:instance/node()//node()[not(@template) and not(ancestor::*[@template])]">
         <xsl:call-template name="copy-model">
             <xsl:with-param name="model" select="current()"/>
         </xsl:call-template>
     </xsl:template>
 
-    <!--<xsl:template match="model/*:instance/node()/node()[@template]">-->
-    <xsl:template match="*[@template]">
+    <xsl:template match="model/*:instance/node()//node()[@template]">
         <xsl:call-template name="copy-repeat-model">
             <xsl:with-param name="model" select="current()"/>
         </xsl:call-template>
@@ -64,11 +63,11 @@
                     <xsl:attribute name="bind">
                         <xsl:call-template name="genPath"/>
                     </xsl:attribute>
-                    <xsl:if test="$model/text()">
-                        <xsl:attribute name="value">
-                            <xsl:value-of select="normalize-space($model/text()[1])"/>
-                        </xsl:attribute>
-                    </xsl:if>
+                    <!--<xsl:if test="$model/text()">-->
+                    <!--<xsl:attribute name="value">-->
+                    <!--<xsl:value-of select="normalize-space($model/text()[1])"/>-->
+                    <!--</xsl:attribute>-->
+                    <!--</xsl:if>-->
                 </xsl:element>
 
                 <xsl:if test="$model/*">
