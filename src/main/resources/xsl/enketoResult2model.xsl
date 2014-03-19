@@ -63,21 +63,7 @@
                     <xsl:attribute name="bind">
                         <xsl:call-template name="genPath"/>
                     </xsl:attribute>
-                    <!--<xsl:if test="$model/text()">-->
-                    <!--<xsl:attribute name="value">-->
-                    <!--<xsl:value-of select="normalize-space($model/text()[1])"/>-->
-                    <!--</xsl:attribute>-->
-                    <!--</xsl:if>-->
                 </xsl:element>
-
-                <xsl:if test="$model/*">
-                    <xsl:for-each select="$model/node()">
-                        <xsl:call-template name="copy-model">
-                            <xsl:with-param name="model" select="."/>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                </xsl:if>
-
             </xsl:if>
         </xsl:if>
     </xsl:template>
